@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% main.tex
+%% LaTeX-2e 専用
+%% 
+%% 
+%%        設計工学研究室　学位論文テンプレート
+%%
+%%                      作成日時    2018年 10月 1日
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper, titlepage]{jsbook}      %ドキュメントクラス
+
+%パッケージ
+\usepackage[dvips]{graphicx, color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{afterpage}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{subfigure}
+\usepackage{bm} %ベクトル表示
+\usepackage{slashbox}
+
+%新定義コマンド
+\newcommand{\sankou}[1]{$ ^{\text{[#1]}} $}
+\newcommand{\chref}[1]{第~\ref{#1}~章}
+\newcommand{\secref}[1]{\ref{#1} (p.\pageref{#1})}
+\newcommand{\tableref}[1]{(Table.\ref{#1})}
+\newcommand{\figref}[1]{(Fig.\ref{#1})}
+\newcommand{\figpref}[1]{(Fig.\ref{#1} p.\pageref{#1})}
+\newcommand{\degree}{\char'27\kern-.3em\hbox{C}} 
+
+%再定義コマンド
+\renewcommand{\figurename}{Fig.~}
+\renewcommand{\tablename}{Table.~}
+\renewcommand{\labelitemi}{・}
+\renewcommand{\labelenumi}{(\theenumi)}
+
+\renewcommand{\eqref}[1]{式 (\ref{#1})}
+
+\renewcommand{\subfigtopskip}{0mm}%図と図の間
+\renewcommand{\subfigcapskip}{0mm}%図と副題の間
+
+%余白変更
+\setlength{\textwidth}{\fullwidth}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\title{学位論文のテンプレート}
+\author{埼玉大学　工学部　機械工学科
+        \\
+        埼玉　太郎
+        }
+
+\begin{document}
+
+    %タイトル
+    \input{text/title.tex}                                %タイトル ※修士は題目_修士、学士は題目_学士に変更すること。編集するファイルもそれぞれ対応するファイルを編集する。
+
+    \frontmatter
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \mainmatter{} 
+    %!!重要!!
+    %各章は奇数ページから開始するように調整すること
+    %つまり各章は偶数ページで終わるように、改ページ等を使用して調整する。
+    \input{text/introduction.tex}                                          %第1章
+    \input{text/theory_and_implementation_plan.tex}                     %第2章
+    \input{text/experimental_equipment_and_development_machinery.tex}            %第3章
+    \input{text/experiment.tex}                                          %第4章
+    \input{text/conclusion.tex}                                          %第5章
+    \input{text/appendix.tex}                                          %付録（あれば）
+    \backmatter{}                                                %章番号を付けない
+    \input{text/thanks.tex}                                          %謝辞
+    \input{text/reference.tex}                                 %参考文献
+\end{document}
