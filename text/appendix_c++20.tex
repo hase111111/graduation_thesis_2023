@@ -1,0 +1,42 @@
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 付録.tex
+%% LaTeX-2e 専用
+%% 
+%% 
+%%        設計工学研究室　学位論文テンプレート
+%%
+%%                      作成日時    2010年 12月 17日
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{C++20への移行}\label{chapter:付録A}
+\section{C++20の概要}
+C++にはコンパイラの標準規格として，C++98，C++03，C++11などが存在する．
+その中でもC++11以降は約3年に一度のペースで新しい規格が策定されている．
+先行研究のプログラムでは，C++17を使用していたが，本研究ではC++20を使用するように変更を行った．
+C++20では，C++17からの変更点として，以下のようなものがある．
+\begin{itemize}
+  \item constexpr関数の制限緩和
+  \item constval関数の追加
+\end{itemize}
+constexpr関数は，コンパイル時に評価される関数である．これは，C言語におけるマクロ関数のような処理を実現するために使用される．
+たとえば，以下のようなプログラムを考える．
+\begin{verbatim}
+  #include <iostream>
+  #include <array>
+  using namespace std;
+
+  constexpr int add(int a, int b){
+    return a + b;
+  }
+
+  int main(){
+    constexpr int a = 1;
+    constexpr int b = 2;
+    constexpr int c = add(a, b);
+    cout << c << endl;
+  }
+\end{verbatim}
+
+\section{constexpr変数・関数}
