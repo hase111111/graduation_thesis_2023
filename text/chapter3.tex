@@ -1,21 +1,15 @@
-﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% 実験装置や開発機械.tex
+﻿%% 歩容パターンの再評価手法の実装.tex
 %% LaTeX-2e 専用
-%% 
-%% 
-%%        設計工学研究室　学位論文テンプレート
-%%
-%%                      作成日時    2010年 12月 17日
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{歩容パターンの再評価手法の実装}\label{chapter:歩容パターンの再評価手法の実装}
 第\ref{chapter:歩容パターンの再評価手法の実装}章では，
 第\ref{chapter:歩容パターンの再評価手法の提案}章で述べた歩容パターンの再評価手法の実装方法について述べる．
 
 \section{グラフ探索による自由歩容パターン生成手法の実装}
+再評価手法の実装方法の説明の前に，グラフ探索による自由歩容パターン生成手法の実装方法について述べる．
+
 \section{歩容パターンの再評価手法の実装}
+
 \section{グラフ探索による自由歩容パターン生成手法の統合}
 先行研究において，グラフ探索による自由歩容パターン生成手法はロボットの動作によって別のものを使用しており，
 それぞれ別のプログラムで実装されている．
@@ -29,20 +23,20 @@
 3次元空間とはロボットが立体的な地形で動作することを表す．
 
 \begin{table}[htbp]
-    \caption{実装済みのロボットの動作}
-    \label{tab:ロボットの動作}
-    \begin{center}
-        \begin{tabular}{|c|c|c|c|c|c|c|} \hline
-            \backslashbox{動作}{ロボット} & 2次元空間 & 3次元空間  \\ \hline
-            直進 & $\bigcirc$ & $\bigcirc$ \\ \hline
-            その場旋回 & $\bigcirc$ & $\times$ \\ \hline
-            旋回 & $\bigcirc$ & $\times$ \\ \hline
-            旋回 & $\bigcirc$ & $\times$ \\ \hline
-            特定姿勢での静止 & $\bigcirc$ & $\times$ \\ \hline
-            %% まるはtexにおいて，$\bigcirc$
-            %% ばつはtexにおいて，$\times$
-        \end{tabular}
-    \end{center}
+	\caption{実装済みのロボットの動作}
+	\label{tab:ロボットの動作}
+	\begin{center}
+   	\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+    	\backslashbox{動作}{ロボット} & 2次元空間 & 3次元空間  \\ \hline
+      直進 & $\bigcirc$ & $\bigcirc$ \\ \hline
+      その場旋回 & $\bigcirc$ & $\times$ \\ \hline
+      旋回 & $\bigcirc$ & $\times$ \\ \hline
+      旋回 & $\bigcirc$ & $\times$ \\ \hline
+      特定姿勢での静止 & $\bigcirc$ & $\times$ \\ \hline
+      %% まるはtexにおいて，$\bigcirc$
+      %% ばつはtexにおいて，$\times$
+    \end{tabular}
+  \end{center}
 \end{table}
 
 \subsection{自由歩容パターン生成手法の切り替えアルゴリズム}

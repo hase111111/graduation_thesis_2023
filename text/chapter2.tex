@@ -43,8 +43,8 @@
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=50mm, clip]{figure/tree_graph.png}
-   \caption{Tree Graph}
-   \label{fig:tree_graph}
+    \caption{Tree Graph}
+    \label{fig:tree_graph} % chktex 24
   \end{center}
 \end{figure}
 
@@ -81,14 +81,14 @@ Prabirらが提案した手法では2次元平面での移動を前提として�
 
 \begin{figure}[htbp]
   \begin{center}
-   \includegraphics[width=75mm, clip]{figure/chapter2/discretization_of_leg_pos.png}
-   \caption{Discretization of Leg Posistion}
-   \label{fig:discretization}
+    \includegraphics[width=75mm, clip]{figure/chapter2/discretization_of_leg_pos.png}
+    \caption{Discretization of Leg Posistion}
+    \label{fig:discretization} % chktex 24
   \end{center}
 \end{figure}
 
 このような脚位置の離散化を行うことで，脚位置の組み合わせを有限個に抑えることができるが，
-脚位置の組み合わせは，$7^6 = 117649$通り存在する．C++では約1秒間に$10^8$回の計算が可能であるため，
+脚位置の組み合わせは未だ，$7^6 = 117649$通り存在する．C++では約1秒間に$10^8$回の計算が可能であるため，
 この組み合わせの数では実時間内の計算が困難である．
 そこで，大木らは脚位置の組み合わせを階層構造化することで探索するノード数を減らすことに成功した\cite{Oki_Graph_search}．
 
@@ -101,16 +101,16 @@ Prabirらが提案した手法では2次元平面での移動を前提として�
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=75mm, clip]{figure/chapter2/hierarchy.png}
-   \caption{Discretization of Leg Posistion}
-   \label{fig:hierarchy}
+    \caption{Discretization of Leg Posistion}
+    \label{fig:hierarchy} % chktex 24
   \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=75mm, clip]{figure/chapter2/hierarchy2.png}
-   \caption{Discretization of Leg Posistion}
-   \label{fig:hierarchy2}
+    \caption{Discretization of Leg Posistion}
+    \label{fig:hierarchy2} % chktex 24
   \end{center}
 \end{figure}
 
@@ -133,7 +133,12 @@ Prabirらが提案した手法では2次元平面での移動を前提として�
 近似的な脚の可動範囲については，以下の手順を用いて求めている．
 
 \subsection{脚軌道生成の失敗}
-
+先行研究ではグラフの階層構造化および脚軌道生成の分離によって，実時間内の計算が可能になった．
+しかし，実際に実機を用いて歩行実験を行ったところ，低頻度ではあるが脚軌道生成に失敗することがあった．
+失敗の原因として，脚の可動範囲に近似的な値を用いていることがあげられる．
+近似的な脚の可動範囲の境界近くは，実際には脚の可動範囲外であるが，
+近似的な値を用いているため脚の可動範囲内と判定されてしまっている領域があると考えられる．
+そのため，脚軌道や脚の接地点が脚の可動範囲外になってしまい，脚軌道生成に失敗することがあると考えられる．
 
 % 予備実験の章
 \section{歩行シミュレーションによる脚軌道生成失敗時の脚先位置の特定}
@@ -141,27 +146,31 @@ Prabirらが提案した手法では2次元平面での移動を前提として�
 \subsection{シミュレーション実験の目的}
 先行研究では脚軌道生成の失敗による動作の停止が報告された上，その原因は脚先が脚の可動範囲の外を通ることによるものであると考察されてきた．
 しかし，具体的に脚先がどのような位置になると脚軌道生成が失敗するのかは明らかにされていなかった．
-そのため予備実験として，先行研究と同じ条件で歩行シミュレーション実験を行い，ロボットの脚軌道を確認することで，脚軌道生成失敗の原因を考察した．
+そのため予備実験として，先行研究\cite{Hato_Graph_search}と同じ条件で歩行シミュレーション実験を行い，ロボットの脚軌道を確認することで，脚軌道生成失敗の原因を特定することにした．
 
 \subsection{シミュレーションの条件}
-本研究室ではロボットの動作のシミュレーションを行うためのシミュレーターソフトウェアを自作し，シミュレーション実験で用いてきた．
-シミュレーターはC++で記述されており，WindowsAPIを用いてGUIを実装し，ロボットを表示している．
-また，GUIの表示のプログラムをより簡単に記述するため，ゲームプログラミングに用いられるライブラリのDxLibを用いている．
+本研究室ではロボットの動作のシミュレーションを行うためのシミュレーターソフトウェアを自作し，シミュレーション実験を行ってきた．
+本論文でも同様に，シミュレーション実験に自作のシミュレーターソフトウェアを用いた．
 
+シミュレーターはC++で記述されており，WindowsAPIを用いてGUIを実装し，ロボットを表示している．
+また，GUIの表示のプログラムをより簡単に記述するため，ゲームプログラミングに用いられるライブラリのDxLib\cite{Dxlib_Web}を用いている．
 シミュレーターは物理演算を行っておらず，トルク不足や摩擦，脚先の滑りによるずれを考慮していない．
 そのため，ロボットのアクチュエータは無限のトルクを持ち，脚先は滑りなく接地するものと仮定している．
 本来これらのパラメータを考慮すべきではあるが，
 本研究においては歩容パターン生成によって得られた脚接地点に脚先を届かせることが可能であるかを確認することが目的であるため，これらのパラメータは考慮しないこととしている．
 
+\subsubsection{モデルとするロボット}
+
 \subsection{シミュレーションの結果}
 以下の図に脚軌道生成失敗時の脚先の座標を示す．
 
-\subsection{脚軌道生成の失敗の原因の考察}
+\subsection{脚軌道生成に失敗する原因の考察}
 
 % 常に脚軌道生成が可能な自由歩容パターン生成手法の検討の章
 \section{常に脚軌道生成が可能な自由歩容パターン生成手法の検討}
 常に脚軌道生成を可能にするためには，近似された脚可動範囲を適切に設定する必要がある．
 
 
+% 再評価手法の提案の章
 \section{歩容パターンの再評価手法}
 
