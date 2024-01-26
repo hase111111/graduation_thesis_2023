@@ -30,6 +30,8 @@ constexpr関数はコンパイル時に評価される関数であり，
 C言語におけるマクロ関数のような処理を実現するために使用される．
 たとえば，以下のようなプログラムを考える．
 
+\newpage  % 改ページする
+
 \begin{lstlisting}[caption=convert func as macro,label=convert_func_as_macro]
 #include <iostream>
 
@@ -44,6 +46,9 @@ int main()
   std::cout << CONVERT_TO_RAD(deg) << std::endl;
 }
 \end{lstlisting}
+
+% 1行開ける
+\vskip \baselineskip
 
 このプログラムでは，マクロ関数を使用して，度数法で表された角度をラジアンに変換している．
 プログラムを記述する際にはラジアンで角度を表現すると可読性が低くなるため，
@@ -62,13 +67,15 @@ int main()
 C++はpythonやjava scriptなどの動的型付け言語とは異なり静的型付け言語である．
 そのため，コンパイル時に型の不一致や意図しないキャストを警告として出力することができ，
 ランタイムエラーを防ぐことができる．
-しかし，マクロはコンパイル時に文字を張り付けるだけであるため，型の確認を行わない．
+しかし，マクロはプリコンパイル時に文字を置換するだけであるため，型の確認を行わない．
 そのためたとえば上記のマクロ関数において，引数をint型やdouble型，果てはその他のクラスなどに変更しても，
 float型との掛け算演算子が定義されていればコンパイルは通ってしまう．
 先行研究のプログラムではマクロ関数を使用している箇所が多く存在したため，
 実際に浮動小数点型のfloat型とdouble型が混在している箇所が存在した．
 
 これをconstexpr関数を使用することで，以下のように書き換えることができる．
+
+\newpage  % 改ページする
 
 \begin{lstlisting}[caption=convert func as constexpr,label=convert_func_as_constexpr]
 #include <iostream>
@@ -88,6 +95,9 @@ int main()
   std::cout << ConvertToRad(deg) << std::endl;
 }
 \end{lstlisting}
+
+% 1行開ける
+\vskip \baselineskip
 
 このようにconstexpr関数を使用することで，マクロ関数のようにコンパイル時に評価される関数を定義することができる．
 また，constexpr関数はコンパイル時に評価が行われるため，コンパイル時に型の確認を行うことができる．
