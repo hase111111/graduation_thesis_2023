@@ -8,6 +8,56 @@
 \section{グラフ探索による自由歩容パターン生成手法の実装}
 再評価手法の実装方法の説明の前に，グラフ探索による自由歩容パターン生成手法の実装方法について述べる．
 
+\subsection{ノードの定義}
+まず，歩容パターングラフのノードについて説明する．
+歩容パターングラフのノードは\figref{fig:robot_state_node}のような，
+ロボットの状態を表す構造体RobotStateNodeで表現される．
+なお，\figref{fig:robot_state_node}はUML（Unified~Modeling~Language）を用いて表現されており，
+上からクラス・構造体の名前，メンバ変数，メンバ関数を表している．
+メンバ変数は，アクセッサ，変数名，型の順に記述されており，
+メンバ関数は，アクセッサ，関数名，引数，戻り値の順に記述されている．
+また，先頭に付いている+はpublicを表し，protectedは\#，
+privateは$-$で表す．
+
+RobotStateNodeのメンバ変数leg\_stateは，ロボットの脚の状態を表すビット列である．
+
+RobotStateNode構造体とVector3構造体は
+それぞれメンバ変数を操作するためのメンバ関数を持っているが，
+グラフ探索とは関係がないため，ここでは説明を省略する．
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{class}[text width=8cm]{RobotStateNode}{0, 0}
+      \attribute{+ leg\_state : std::bitset\textless 28\textgreater}
+      \attribute{+ leg\_pos : std::array\textless Vector3, 6\textgreater}
+      \attribute{+ leg\_reference\_pos : std::array\textless Vector3, 6\textgreater}
+      \attribute{+ center\_of\_mass\_global\_coord : Vector3}
+      \attribute{+ posture : Quaternion}
+      \attribute{+ next\_move : HexapodMove}
+      \attribute{+ parent\_index : int}
+      \attribute{+ depth : int} 
+      \operation{}
+    \end{class}
+  \end{tikzpicture}
+  \caption{RobotStateNode Struct}
+  \label{fig:robot_state_node}  % chktex 24
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{class}[text width=8cm]{Vector3}{0, 0}
+      \attribute{+ x : float}
+      \attribute{+ y : float}
+      \attribute{+ z : float}
+      \operation{}
+    \end{class}
+  \end{tikzpicture}
+  \caption{Vector3 Struct}
+  \label{fig:Vector3}  % chktex 24
+\end{figure}
+
 \section{歩容パターンの再評価手法の実装}
 
 \section{グラフ探索による自由歩容パターン生成手法の統合}
