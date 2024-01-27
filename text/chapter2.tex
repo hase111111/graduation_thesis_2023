@@ -40,7 +40,7 @@
 また，あるノードから根ノードまでのエッジの数をそのノードの深さと呼び，
 根ノード自身の深さは0となる．
 
-例えば\figref{fig:tree_graph}において，ノードAが根ノードであり，ノードB，Cがその子ノードである．
+たとえば\figref{fig:tree_graph}において，ノードAが根ノードであり，ノードB，Cがその子ノードである．
 また，ノードB，ノードD，E，ノードCはノードFを子ノードとして持ち，ノードD，E，Fは葉ノードである．
 ノードAの深さは0であり，ノードB，Cの深さは1，ノードD，E，Fの深さは2となる．
 
@@ -48,12 +48,12 @@
   \subfigure[Undirected Graph]{%
   \label{fig:undirected_graph}
   \includegraphics[width=0.48\columnwidth]{figure/chapter2/undirected_graph.png}}
-  \hspace{0.04\columnwidth}
+  \hspace{0.02\columnwidth}
   \subfigure[Directed Graph]{%
   \label{fig:directed_graph}
   \includegraphics[width=0.48\columnwidth]{figure/chapter2/directed_graph.png}}
   \caption{Examples of simple graphs}
-  \label{fig:example_simple_graphs}
+  \label{fig:example_simple_graphs}  % chktex 24
 \end{figure}
 
 \begin{figure}[h]
@@ -76,9 +76,10 @@
 グラフは有向の根付き木とし，現在のロボットの状態を根ノード，
 その姿勢から1動作で到達できる姿勢を子ノードとして根ノードに接続する．
 また，このようにして作られたグラフを歩容パターングラフと定義する．
+\figref{fig:image_of_gait_pattern_graph}に歩容パターングラフのイメージを示した．
 
 本手法では，まず歩容パターングラフを作成する．
-そして，根ノードから最も最適な動作を行う葉ノードまでのパスを，グラフ探索によって求め，
+そして，根ノードから最適な動作を行う葉ノードまでのパスをグラフ探索によって求め，
 そのパスに含まれる深さ1のノードを次の動作としてロボットに実行させる．
 これを繰り返すことで，ロボットの歩容パターンを生成しているのである．
 
@@ -87,7 +88,16 @@
 しかし，歩容パターングラフはロボットの状態や動作を対象とするため無数の組み合わせが存在し，
 そのすべてを網羅的に調べ上げることは困難である．
 そのため，状態や動作を離散化することで歩容パターン生成をグラフへ落とし込む必要がある．
-以下に各要素の離散化について述べる．
+以下に各要素の離散化方法について述べる．
+\\
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=75mm, clip]{figure/chapter2/gait_pattern_graph.png}
+    \caption{Image of Gait Pattern Graph}
+    \label{fig:image_of_gait_pattern_graph} % chktex 24
+  \end{center}
+\end{figure}
 
 \subsubsection{グラフの階層構造}
 前述のとおり，ロボットの脚位置は脚の可動範囲内であれば，無数の位置を取ることができる．
@@ -117,7 +127,7 @@ Prabirらが提案した手法では2次元平面での移動を前提として�
 
 このような脚位置の離散化を行うことで，脚位置の組み合わせを有限個に抑えることができるが，
 脚位置の組み合わせは未だ，$7^6 = 117649 \approx 10^5$通り存在し，
-遊脚である時を含めるとさらに組み合わせが増えることがわかる．
+遊脚である時を含めるとさらに組み合わせが増えてしまうことがわかる．
 プログラムの実行環境によって左右されるが，
 プログラミング言語のC++で作成した処理では約1秒間に$10^8$回程度の計算が可能であるとされており\cite{Program_Challenge_Book}，
 この組み合わせをすべて歩容パターングラフに追加した場合，実時間内の処理を行うにはグラフの規模が大きくなりすぎる．
@@ -163,7 +173,7 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 このことから，ある脚位置の組み合わせから，別の脚位置の組み合わせへの遷移は，
 脚の状態$L$が等しいときのみ可能であることがわかる．
 
-以上の定義より，階層構造と探索方法について説明することができる．
+以上の定義より，階層構造と階層を用いたグラフの探索方法について説明することができる．
 階層とは脚位置の組み合わせ$K$が等しく，かつ，遊脚の組み合わせ$V$が異なるノードの集合と定義され，
 遊脚の組み合わせが36通り存在することから，同じ階層内のノードは36個存在する．
 脚の上下運動を実現したい場合は，遊脚の組み合わせ$V$が異なるノードを探索する必要があるため，
@@ -210,16 +220,19 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 近似的な脚の可動範囲の求め方について述べる．
 近似的な脚の可動範囲は脚の付け根を中心とする環状の扇形として表現する．
 簡単のため，以降は扇形の外径を最大半径，内径を最小半径と呼ぶことにする．
-まず，脚先が届くことができる範囲を求めるために，最大半径を以下の手順で求める．
+まず，脚先を届くことができる範囲を求めるために，
+最大半径を以下の手順で求める．
 \begin{enumerate}
+  \item 脚の付け根と脚先が同じ高さになるように脚先を上げる．
   \item 図\ref{fig:leg_range_a}のように水平方向に脚先を$1 [mm]$ずつ伸ばす．
   \item 脚先を伸ばすことができなくなった場合，\\
         図\ref{fig:leg_range_b}のように脚先と脚の付け根の高さ方向の距離の差をインデックスとして，\\
         脚先と第1関節の水平方向の距離を最大半径として記録する．
-  \item 脚先を$1 [mm]$下げて同様の処理を繰り返す．脚先を下げることができなくなった場合，処理を終了する．
+  \item 脚先を$1 [mm]$下げて（2）（3）の処理を繰り返す．脚先を下げることができなくなった場合，処理を終了する．
 \end{enumerate}
 次に最小半径をロボットの脚長などのパラメータから決定する．
-先行研究では実験機にあわせ，$120 [mm]$とした．
+先行研究では実験で用いたロボットにあわせ，$120 [mm]$とした．
+そして，扇形の中心角を隣の脚と干渉しないように決定する．
 
 \begin{figure}[h]
   \subfigure[Horizontal Movement of the Leg Tips]{%
@@ -229,9 +242,13 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
   \subfigure[Determination of the Maximum Radius]{%
   \label{fig:leg_range_b}
   \includegraphics[width=0.48\columnwidth]{figure/chapter2/max_leg_range.png}}
-  \caption{Comparelegmodel}
-  \label{fig:leg_range}
+  \caption{Caluculation of the Maximum Radius}
+  \label{fig:leg_range}  % chktex 24
 \end{figure}
+
+\newpage
+
+以上の定義より
 
 \subsection{脚軌道生成の失敗}
 先行研究ではグラフの階層構造化および脚軌道生成の分離によって，実時間内の計算が可能になった．
@@ -266,19 +283,19 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 これらのパラメータは考慮しないこととしている．
 
 \subsubsection{シミュレーションの計算環境}
-シミュレーションの計算環境は\tableref{tab:simulation_env}に示したとおりである．
+シミュレーションの計算環境は\tableref{tab:simulation_env}に示した．
 
 % 計算環境の表
 \begin{table}[htbp]
 	\caption{Simulation Environment}
-	\label{tab:simulation_env}
+	\label{tab:simulation_env}  % chktex 24
 	\begin{center}
-   	\begin{tabular}{|c||c|} \hline
-      CPU & 11thGen Intel Core(TM) i5-11400  \\ \hline
-      RAM & 32.0GB  \\ \hline
-      OS & Windows 11 Home  \\ \hline
-      開発環境 & Visual Studio 2022 Community  \\ \hline
-      使用言語 & C++20  \\ \hline
+   	\begin{tabular}{|c||c|} \hline  % chktex 44
+      CPU & 11thGen Intel Core(TM) i5--11400  \\ \hline  % chktex 44
+      RAM & 32.0GB  \\ \hline  % chktex 44
+      OS & Windows 11 Home  \\ \hline  % chktex 44
+      開発環境 & Visual Studio 2022 Community  \\ \hline  % chktex 44
+      使用言語 & C++20  \\ \hline  % chktex 44
     \end{tabular}
   \end{center}
 \end{table}
@@ -301,7 +318,7 @@ PhantomX（\figref{fig:phantomx_mk2}）は6脚ロボットであり，各脚に3
 歩行する地形を\figref{fig:terrain}に示す．
 地形は5種類あり，それぞれ平地，上り段差，下り段差，上り斜面，下り斜面である．
 実機試験の条件に合わせ，段差は上り，下りともに高さが$100 [mm]$とし，
-斜面は上り，下りともに角度が$15 [deg]$とした．
+斜面は上り，下りともに角度が$15\deg$とした．
 
 \subsection{シミュレーションの結果}
 以下の図に脚軌道生成失敗時の脚先の座標を示す．
