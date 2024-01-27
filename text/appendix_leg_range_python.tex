@@ -26,6 +26,48 @@ Microsoft Wordの変更履歴機能のようなシステムをさまざまなプ
 GitHubを用いることで，ソースコードの変更履歴を保存することができるだけでなく，
 自分のソースコードを公開したり，他の人が作成したソースコードをダウンロードしたりすることもできる．
 
+Gitを使うため，まずはGitをインストールする必要がある．
+次のリンクからGitのインストーラをダウンロードし，実行する．
+インストーラではオプションの設定を変更する必要はないため，
+すべてのページで変更をせずに「Next」を選択してインストールを行う．
+
+\begin{itemize}
+  \item Git for Windows https://git-scm.com/downloads （アクセス日 2023/12/30）
+\end{itemize}
+
+Gitは多くのアプリケーションとは違い，コマンドを用いて操作を行う．
+そのため，インストールが完了しても，Gitのアプリケーションが起動することはない．
+Gitのインストールが成功したかどうかは，コマンドを用いて確認する．
+インストールが完了した場合，Gitのコマンドが使用できるようになっているはずである．
+1度パソコンを再起動したのち，\figref{fig:git_bash}のように
+スタートメニューに「Git Bash」と入力してGit Bashを起動する．
+Git Bashが起動したら，Listing\ref{lst:git_version}のコマンドを入力する．
+\figref{fig:git_version}のようにGitのバージョンが表示されれば，インストールは成功している．
+
+\begin{lstlisting}[caption=Gitのバージョン確認コマンド, label=lst:git_version]
+  git --version
+\end{lstlisting}
+
+\begin{figure}[h]
+  \begin{tabular}{cc}
+      \begin{minipage}{.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/appendix/git_bash.png}
+          \caption{Git Bash}
+          \label{fig:git_bash} % chktex 24
+      \end{minipage}
+      \begin{minipage}{.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/appendix/git_version.png}
+          \caption{Display Git Version}
+          \label{fig:git_version} % chktex 24
+      \end{minipage}
+  \end{tabular}
+\end{figure}
+
+
+
+
 \subsection{pythonのコンパイル方法}
 本項目では，Windows 10におけるpythonのコンパイル方法を説明する．
 Mac OSやLinuxにおけるpythonのコンパイル方法については，ここでは説明しない．
