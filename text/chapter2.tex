@@ -362,21 +362,45 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 \newpage
 
 以上の式を用いて，PhantomXの脚の可動範囲を求めたものが\figref{fig:simu_leg_range}である．
-\figref{fig:simu_leg_range}では，$\theta_c = 0$とし，x-z平面における脚の可動範囲を示している．
+\figref{fig:simu_leg_range}では，$\theta_c = 0$とした時の，x-z平面における脚の可動範囲を示している．
+横軸をx軸，縦軸をz軸とし，単位は$[mm]$である．
 黒色の実線で示される領域が実際の脚の可動範囲であり，緑色の実線で示される領域が近似された脚の可動範囲である．
 赤色の点線で示される直線は遊脚の高さを表しており，この直線よりも高く上げることはない．
+青色の線と頂点で示される図形は脚の概形である．
+
+\figref{fig:simu_leg_range}より，$100 < x < 150$，$-50 < z < -20$の範囲は，
+実際の脚の可動範囲と近似された脚の可動範囲が異なる領域になっているとわかる．
+この領域内の点を脚の接地点として選択してしまうと，脚の可動範囲外に脚先が出てしまうため，
+脚軌道を生成できず，脚が接地できないことによって転倒してしまう．
+また，この領域の点を脚の接地点として選択していなくとも，
+脚軌道がこの領域を通過する場合，脚の可動範囲外に脚先が出てしまうため，
+矩形軌道の生成に失敗し，この領域を避けるような不完全な脚軌道が生成される．
+プログラムは矩形軌道を描くことを前提にしているため，
+このような不完全な脚軌道を生成すると，障害物に脚が引っかかってしまい歩行を継続できなくなる．
+以上から，この領域が脚軌道生成の失敗の原因であると予想できる．
+
+\figref{fig:simu_leg_range}は遊脚高さを$20 [mm]$，最小半径を$120 [mm]$とした時のものであるが，
+遊脚高さを$25 [mm]$，最小半径を$130 [mm]$とした時の脚の可動範囲を\figref{fig:act_leg_range}に示す．
+\figref{fig:simu_leg_range}の条件は波東らの研究\cite{Hato_Graph_search}のシミュレーション実験時の条件であり，
+\figref{fig:act_leg_range}の条件は実機試験時の条件である．
+\figref{fig:act_leg_range}では，$100 < x < 150$，$-50 < z < -20$の範囲の，
+実際の脚の可動範囲と近似された脚の可動範囲が異なる領域の大きさが小さくなっていることがわかる．
+実機試験時にあたり，条件を変更する必要があったことからも，
+近似値と実際の値の差が脚軌道生成失敗に影響していると予想できるだろう．
+
+\newpage
 
 \begin{figure}[h]
   \begin{tabular}{cc}
       \begin{minipage}{0.5\textwidth}
           \centering
-          \includegraphics[width=1.0\linewidth]{figure/N_A.png}
-          \caption{Approximated Range of Motion in Simulation}
+          \includegraphics[width=1.0\linewidth]{figure/chapter2/leg_range_120_20.png}
+          \caption{Approximated Range of Motion in Simulation \newline}
           \label{fig:simu_leg_range} % chktex 24
       \end{minipage}
       \begin{minipage}{0.5\textwidth}
           \centering
-          \includegraphics[width=1.0\linewidth]{figure/N_A.png}
+          \includegraphics[width=1.0\linewidth]{figure/chapter2/leg_range_130_25.png}
           \caption{Approximated Range of Motion in Experimental Equipment}
           \label{fig:act_leg_range} % chktex 24
       \end{minipage}
@@ -424,6 +448,34 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 斜面は上り，下りともに角度が$15 [\deg]$とした．
 
 \subsubsection{歩行する時の条件}
+シミュレーション時の歩行条件は以下の通りである．
+\begin{itemize}
+  \item 胴体姿勢は常に水平である．
+  \item 最小半径を$120 [mm]$とする．
+  \item 重心から見た遊脚高さを$-20 [mm]$とする．
+  \item 胴体を地形から最小$30 [mm]$離す．
+  \item 常に静的安定余裕は$10 [mm]$以上を保つ．
+\end{itemize}
+
+実機実験時の歩行条件は以下の通りである．
+\begin{itemize}
+  \item 胴体姿勢は常に水平である．
+  \item 最小半径を$130 [mm]$とする．
+  \item 重心から見た遊脚高さを$-25 [mm]$とする．
+  \item 胴体を地形から最小$50 [mm]$離す．
+  \item 常に静的安定余裕は$15 [mm]$以上を保つ．
+\end{itemize}
+
+以上の2つの条件で歩行シミュレーションを行う．
+
+\subsubsection{シミュレーションの手順}
+これらの地形で水平方向に$1200 [mm]$直進させ，
+\figref{fig:terrain}のロボットの初期位置をランダムに変化させて計5回ずつ歩行させる．
+
+このシミュレーションでは脚軌道生成に失敗した場合も，
+仮に脚軌道生成に成功した場合と同様に歩行を継続させ，
+脚軌道生成に失敗した場合の脚先の位置と回数を記録する．
+これを各地形，各条件で行う．
 
 % 計算環境の表
 \begin{table}[htbp]
@@ -440,7 +492,7 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
   \end{center}
 \end{table}
 
-
+\newpage
 
 % 地形の図
 \begin{figure}[htbp]
@@ -494,39 +546,40 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 \end{figure}
 
 \subsection{シミュレーションの結果}
-まず，脚軌道生成失敗の回数を\tableref{tab:failure_count}に示す．
+シミュレーション時の条件で歩行させたとき脚軌道生成失敗の回数を\tableref{tab:failure_count_experimental}に示す．
+また，実機実験時の条件で歩行させたとき脚軌道生成失敗の回数を\tableref{tab:failure_count_simulation}に示す．
 
 % 書き方 https://uec.medit.link/latex/table.html
+
+\begin{table}[htbp]
+  \caption{Failure Count of Simulation}
+  \label{tab:failure_count_simulation}  % chktex 24
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline  % chktex 44
+    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} & \multirow{3}{*}{失敗率 $[\%]$} \\ \cline{3-7}  % chktex 44
+     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} & \\ \cline{4-6}  % chktex 44
+     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 & \\ \hline  % chktex 44
+    平面     & 315 & 47 & 16 & 4 & 0 & 67 & 21.3 \\ \hline  % chktex 44
+    上り斜面 & 460 & 63 & 11 & 22 & 1 & 97 & 21.1 \\ \hline  % chktex 44
+    下り斜面 & 611 & 29 & 53 & 28 & 0 & 110 & 18.0 \\ \hline  % chktex 44
+    上り段差 & 368 & 50 & 16 & 10 & 0 & 76 & 20.7 \\ \hline  % chktex 44
+    下り段差 & 331 & 33 & 39 & 6 & 0 & 78 & 23.6 \\ \hline  % chktex 44
+  \end{tabular}
+\end{table}
 
 \begin{table}[htbp]
   \caption{Failure Count of Experimental Equipment}
   \label{tab:failure_count_experimental}  % chktex 24
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|} \hline  % chktex 44
-    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} \\ \cline{3-7}  % chktex 44
-     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} \\ \cline{4-6}  % chktex 44
-     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 \\ \hline  % chktex 44
-    平面     & 351 & 0 & 9 & 2 & 0 & 11 \\ \hline  % chktex 44
-    上り斜面 & 645 & 0 & 10 & 1 & 0 & 11 \\ \hline  % chktex 44
-    下り斜面 & 867 & 0 & 20 & 9 & 0 & 29 \\ \hline  % chktex 44
-    上り段差 & 461 & 0 & 6 & 10 & 0 & 16 \\ \hline  % chktex 44
-    下り段差 & 383 & 0 & 9 & 0 & 0 & 9 \\ \hline  % chktex 44
-  \end{tabular}
-\end{table}
- 
-\begin{table}[htbp]
-  \caption{Failure Count of Simulation}
-  \label{tab:failure_count_simulation}  % chktex 24
-  \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|} \hline  % chktex 44
-    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} \\ \cline{3-7}  % chktex 44
-     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} \\ \cline{4-6}  % chktex 44
-     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 \\ \hline  % chktex 44
-    平面     & 315 & 47 & 16 & 4 & 0 & 67 \\ \hline  % chktex 44
-    上り斜面 & 460 & 63 & 11 & 22 & 1 & 97 \\ \hline  % chktex 44
-    下り斜面 & 611 & 29 & 53 & 28 & 0 & 110 \\ \hline  % chktex 44
-    上り段差 & 368 & 50 & 16 & 10 & 0 & 76 \\ \hline  % chktex 44
-    下り段差 & 331 & 33 & 39 & 6 & 0 & 78 \\ \hline  % chktex 44
+  \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline  % chktex 44
+    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数}  & \multirow{3}{*}{失敗率 $[\%]$} \\ \cline{3-7}  % chktex 44
+     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} & \\ \cline{4-6}  % chktex 44
+     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 & \\ \hline  % chktex 44
+    平面     & 351 & 0 & 9 & 2 & 0 & 11 & 3.13 \\ \hline  % chktex 44
+    上り斜面 & 645 & 0 & 10 & 1 & 0 & 11 & 1.71 \\ \hline  % chktex 44
+    下り斜面 & 867 & 0 & 20 & 9 & 0 & 29 & 3.34 \\ \hline  % chktex 44
+    上り段差 & 461 & 0 & 6 & 10 & 0 & 16 & 3.47 \\ \hline  % chktex 44
+    下り段差 & 383 & 0 & 9 & 0 & 0 & 9 & 2.35 \\ \hline  % chktex 44
   \end{tabular}
 \end{table}
 
@@ -542,14 +595,20 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 また，後者は細かく正確に近似するとキャッシュしておく値が増えるため，
 あらかじめ計算しておいた値にアクセスする際の呼び出しにかかる時間が長くなってしまう．
 これにより，計算時間が長くなってしまう問題点がある．
-先行研究のプログラムでは前者の方法でこの問題に対応をしていたが，
-結果的にシミュレーション時に歩行することが可能だった地形を，
-実機試験時では歩行することができなくなってしまっていた．
 
-私はグラフ探索の再評価を行うことで，脚軌道生成の失敗を防ぐことを提案する．
+先行研究では，シミュレーション時と実機試験時の条件を変更していたとおり，
+前者の方法でこの問題に対応をしていた．
+しかし\tableref{tab:walkable_terrain}の歩行条件と，
+それを適応したときの歩行可能な地形を示した表からもわかるように，
+上り段差と下り段差では歩行可能な地形が変わってしまい，
+シミュレーションで歩くことができた地形を歩くことができなくなってしまった．
+加えて，この上でも脚軌道生成に失敗してしまうことがあったため，
+根本的にこの問題を解決するための方法を考える必要がある．
+
+そこで，歩容パターングラフ探索の再評価を行うことで，脚軌道生成の失敗を防ぐ手法を提案する．
 ここでグラフ探索の再評価とは，
 グラフ探索による歩容パターン生成に成功し，脚軌道生成に失敗した場合，
-グラフ探索による歩容パターン生成をやり直して，脚軌道生成に失敗しない新しい歩容パターンを生成することを指す．
+グラフ探索による歩容パターン生成をやり直して，脚軌道生成に失敗しない新しい歩容パターンを生成することと定義する．
 歩容パターン生成をやり直す際，脚軌道生成に失敗しないよう，脚の近似された可動範囲を狭め，
 可動範囲外に接地することがないようにする．
 こうして歩容パターングラフを再生成し，グラフ探索を再度行うことで，
@@ -559,15 +618,30 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 以下にそれぞれの解決策と比較した再評価手法の利点を示す．
 
 \begin{description}
-  \item[可動範囲を小さくすることによる，本来接地可能だった地点を選択できなくなってしまう問題]\mbox{}\\
+  \item[本来接地可能だった地点を選択できなくなってしまう問題]\mbox{}\\
     脚の可動域をある程度広く確保することが可能になり，
     可動範囲の境界に近い点を接地点として選択できるようになる．
     加えて，脚軌道生成に失敗する場合，狭められた可動域に切り替えて失敗を防ぐことができる．
-  \item[より正確に近似された脚の可動範囲を確保する場合に，値を呼び出す際にかかる時間が増えてしまう問題]\mbox{}\\
+    \\
+  \item[値を呼び出す際にかかる時間が増えてしまう問題]\mbox{}\\
     再評価手法では歩容パターン生成をやり直す都合上，
     単純計算で探索にかかる時間が倍になってしまう．
     よってより正確に近似する方が実行時間的に優れると思える．
-    しかし，歩容パターングラフの生成時には $10^5 ~ 10^6$ 程度の数のノードを生成するため，
+    しかし，歩容パターングラフの生成時には $10^5 \sim 10^6$ 程度の数のノードを生成するため，
     グラフ探索内の処理の時間の増加は，最終的な計算時間を大幅に増加させてしまう可能性がある．
     つまり再評価手法では計算時間の増加を約 2 倍程度で済ませることができるといえる．
 \end{description}
+
+\begin{table}[h]
+	\caption{Walkable Terrain}
+	\label{tab:walkable_terrain}  % chktex 24
+	\begin{center}
+   	\begin{tabular}{|c|c|c|} \hline  % chktex 44
+      地形 & シミュレーション時 & 実機実験時 \\ \hline  % chktex 44
+      上り段差 & $130 [mm]$ & $100 [mm]$ \\ \hline  % chktex 44
+      下り段差 & $-130 [mm]$ & $-100 [mm]$\\ \hline  % chktex 44
+      上り斜面 & $15 [\deg]$ & $15 [\deg]$ \\ \hline  % chktex 44
+      下り斜面 & $-15 [\deg]$ & $-15 [\deg]$ \\ \hline  % chktex 44
+    \end{tabular}
+  \end{center}
+\end{table}
