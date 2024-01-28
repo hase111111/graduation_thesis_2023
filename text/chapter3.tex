@@ -7,8 +7,11 @@
 
 \section{グラフ探索による自由歩容パターン生成手法の実装}
 再評価手法の実装方法の説明の前に，グラフ探索による自由歩容パターン生成手法の実装方法について述べる．
+波東らが用いたグラフ探索による自由歩容パターン生成手法と同様の手法によって歩容パターンを生成しているが，
+より早い処理の実現やプログラムの可読性・拡張性の向上のため，その実装方法を1部変更している．
+加えて，新たに3次元不整地における旋回動作の実装を行ったため，改めて実装方法を説明する．
 実装はC++20を用いて行っており，命名規則はGoogle~C++~Style~Guide\cite{cita:google_cpp_style_guide}にしたがっている．
-また，\figref{fig:robot_state_node}はUML（Unified~Modeling~Language）を用いて表現されており，
+また，この章におけるクラスや構造体の図はUML（Unified~Modeling~Language）を用いて表現されており，
 上からクラス・構造体の名前，メンバ変数，メンバ関数を表している．
 メンバ変数は，アクセス修飾子，変数名，型の順に記述されており，
 メンバ関数は，アクセス修飾子，関数名，引数，戻り値の順に記述されている．
@@ -18,6 +21,60 @@ privateは$-$である．
 \subsection{プログラム全体の流れ}
 グラフ探索による自由歩容パターン生成手法では，
 歩容パターングラフの作成，歩容パターングラフの探索の2つの処理を行う．
+歩容パターングラフを作成する処理はGraphTreeCreatorクラスで実装されており，
+歩容パターングラフの探索を行う処理はGraphSearcherクラスで実装されている．
+
+これらの処理の流れを\figref{fig:graph_search_sequence}に示す．
+まず，GraphTreeCreatorクラスに現在のロボットの状態を表すノードを渡す．
+GraphTreeCreatorクラスは，渡されたノードを根ノードとする歩容パターングラフを作成する．
+次に，GraphSearcherクラスに作成された歩容パターングラフを渡す．
+このとき，値をコピーして渡すのではなく，
+ポインタを渡すことでメモリの使用量を削減するとともに，
+グラフ探索の処理時間を短縮している．
+GraphSearcherクラスは，渡された歩容パターングラフを探索し，
+最適な歩容パターンを見つけ，その歩容パターンを返す．
+以上の流れでグラフ探索による自由歩容パターン生成手法を実装している．
+
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=75mm, clip]{figure/chapter3/sequence_main.png}
+    \caption{Graph Search Sequence}
+    \label{fig:graph_search_sequence} % chktex 24
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[show background grid]
+    \begin{interface}[text width=10mm]{IGaitPatternGenerator}{-12, -4}
+      \attribute{}
+      \operation{+ GetNextNodeByGraphSearch() }
+    \end{interface}
+
+    \begin{class}[text width=70mm]{GaitPatternGeneratorBasic}{-12, 0}
+      \inherit{IGaitPatternGenerator}
+      \attribute{- graph\_searcher\_ptr\_ : std::unique\_ptr\textless~IGraphSearcher~\textgreater}
+      \attribute{- graph\_tree\_creator\_ptr\_ : std::unique\_ptr\textless~GraphTreeCreator~\textgreater}
+      \operation{+ GetNextNodeByGraphSearch() }
+    \end{class}
+
+    \begin{interface}[text width=40mm]{IGraphSearcher}{-5, 0}
+      \attribute{}
+      \operation{+ SearchGraphTree() }
+    \end{interface}
+
+    \begin{class}[text width=40mm]{GraphTreeCreator}{-5, -4}
+      \operation{+ Init() }
+      \operation{+ CreateGraphTree() }
+    \end{class}
+
+    \aggregation{GaitPatternGeneratorBasic}{}{}{IGraphSearcher}
+    \aggregation{GaitPatternGeneratorBasic}{}{}{GraphTreeCreator}
+
+  \end{tikzpicture}
+\end{figure}
 
 \subsection{ノードの定義}
 まず，歩容パターングラフのノードについて説明する．
