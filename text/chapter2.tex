@@ -1,4 +1,5 @@
-﻿%% 歩容パターンの再評価手法の提案.tex
+﻿
+%% 歩容パターンの再評価手法の提案.tex
 %% LaTeX-2e 専用
 
 %% 全体の流れとしては，まず，先行研究の問題点を指摘し，次に，歩容パターンの再評価手法を提案する．
@@ -545,9 +546,21 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
   \label{fig:terrain} % chktex 24
 \end{figure}
 
+\newpage
+
 \subsection{シミュレーションの結果}
-シミュレーション時の条件で歩行させたとき脚軌道生成失敗の回数を\tableref{tab:failure_count_experimental}に示す．
-また，実機実験時の条件で歩行させたとき脚軌道生成失敗の回数を\tableref{tab:failure_count_simulation}に示す．
+シミュレーション時の条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_simulation}に示す．
+また，実機実験時の条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_experimental}に示す．
+\tableref{tab:failure_count_simulation}では脚軌道生成の失敗率は多くの地形で$20 [\%]$を超えており，
+動作を継続させることが難しいとわかる．
+とくに脚の接地点が脚の可動範囲外になってしまうことが多く，
+目標の地点まで脚先を届かせることができないため，転倒してしまう可能性が高い．
+\tableref{tab:failure_count_experimental}は脚軌道生成の失敗率は多くの地形で$3 [\%]$程度であり，
+\tableref{tab:failure_count_simulation}よりも著しく低いことがわかる．
+また，脚の接地点が脚の可動範囲外になってしまうことはなく，
+目標の地点まで脚先を届かせることができるため，転倒する可能性は低い．
+そのため，脚が地形に引っかかってしまわない限り，動作を継続させることが可能であるといえる．
+
 
 % 書き方 https://uec.medit.link/latex/table.html
 
@@ -583,7 +596,43 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
   \end{tabular}
 \end{table}
 
+\newpage
+
+シミュレーション時の条件で歩行させたとき，
+脚軌道生成に失敗した脚先の位置を\figref{fig:result_of_simulation}に示す．
+また，実機実験時の条件で歩行させたとき，
+脚軌道生成に失敗した脚先の位置を\figref{fig:result_of_experimental}に示す．
+どちらの図も\figref{fig:simu_leg_range}と\figref{fig:act_leg_range}の
+$50 < x < 250$，$-200 < z < 0$の範囲を拡大したものである．
+橙色の点は脚先が脚の可動範囲外になってしまった時の脚先の位置であり，
+青色の点は脚軌道が脚の可動範囲外を通ってしまった時の脚先の位置である．
+濃い青色は始点，薄い青色は終点を表しており，明るい水色は中継点を表している．
+それぞれ，すべての地形での結果をまとめて図示している．
+この結果から，脚軌道生成に失敗した時の脚先の位置は，
+実際の脚の可動範囲と近似された脚の可動範囲が異なる領域を通っていることがわかる．
+
+\begin{figure}[h]
+  \begin{tabular}{cc}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter2/result_simu.png}
+          \caption{Result of Simulation}
+          \label{fig:result_of_simulation} % chktex 24
+      \end{minipage}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter2/result_exp.png}
+          \caption{Result of Experimental Equipment}
+          \label{fig:result_of_experimental} % chktex 24
+      \end{minipage}
+  \end{tabular}
+\end{figure}
+
 \subsection{脚軌道生成に失敗する原因の考察}
+脚軌道生成に失敗した時の脚先の位置が，
+実際の脚の可動範囲と近似された脚の可動範囲が異なる領域を通っていることから，
+2.1.3章で予想した通り，実際の脚の可動範囲と近似された脚の可動範囲が異なる領域によって，
+脚軌道生成に失敗することがわかった．
 
 % 再評価手法の提案の章
 \section{歩容パターンの再評価手法}
@@ -606,9 +655,13 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
 根本的にこの問題を解決するための方法を考える必要がある．
 
 そこで，歩容パターングラフ探索の再評価を行うことで，脚軌道生成の失敗を防ぐ手法を提案する．
-ここでグラフ探索の再評価とは，
-グラフ探索による歩容パターン生成に成功し，脚軌道生成に失敗した場合，
-グラフ探索による歩容パターン生成をやり直して，脚軌道生成に失敗しない新しい歩容パターンを生成することと定義する．
+歩容パターングラフ探索の再評価とは，脚軌道生成に失敗した場合，
+グラフ探索の処理をやり直して，脚軌道生成に失敗しないような歩容パターンを生成することと定義する．
+グラフ探索の再評価の手順を\figref{fig:revaluation_methodolgy}に示す．
+再評価手法では基本的には従来手法通りにグラフ探索による歩容パターン生成を行い，
+脚軌道生成を行ってロボットを動作させる．
+脚軌道生成に失敗した場合のみ，グラフ探索による歩容パターン生成をやり直して，
+脚軌道生成に失敗しない新しい歩容パターンを生成する．
 歩容パターン生成をやり直す際，脚軌道生成に失敗しないよう，脚の近似された可動範囲を狭め，
 可動範囲外に接地することがないようにする．
 こうして歩容パターングラフを再生成し，グラフ探索を再度行うことで，
@@ -645,3 +698,12 @@ $P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
     \end{tabular}
   \end{center}
 \end{table}
+
+% phantomx mk - 2 の図
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=110mm, clip]{figure/chapter2/revaluation_method.png}
+    \caption{Revaluation Methodology Procedures}
+    \label{fig:revaluation_methodolgy} % chktex 24
+  \end{center}
+\end{figure}
