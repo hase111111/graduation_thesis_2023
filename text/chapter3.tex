@@ -7,21 +7,36 @@
 
 \section{グラフ探索による自由歩容パターン生成手法の実装}
 再評価手法の実装方法の説明の前に，グラフ探索による自由歩容パターン生成手法の実装方法について述べる．
+実装はC++20を用いて行っており，命名規則はGoogle~C++~Style~Guide\cite{cita:google_cpp_style_guide}にしたがっている．
+また，\figref{fig:robot_state_node}はUML（Unified~Modeling~Language）を用いて表現されており，
+上からクラス・構造体の名前，メンバ変数，メンバ関数を表している．
+メンバ変数は，アクセス修飾子，変数名，型の順に記述されており，
+メンバ関数は，アクセス修飾子，関数名，引数，戻り値の順に記述されている．
+アクセス修飾子は記号を用いて表し，+はpublic，protectedは\#，
+privateは$-$である．
+
+\subsection{プログラム全体の流れ}
 
 \subsection{ノードの定義}
 まず，歩容パターングラフのノードについて説明する．
 歩容パターングラフのノードは\figref{fig:robot_state_node}のような，
 ロボットの状態を表す構造体RobotStateNodeで表現される．
-なお，\figref{fig:robot_state_node}はUML（Unified~Modeling~Language）を用いて表現されており，
-上からクラス・構造体の名前，メンバ変数，メンバ関数を表している．
-メンバ変数は，アクセッサ，変数名，型の順に記述されており，
-メンバ関数は，アクセッサ，関数名，引数，戻り値の順に記述されている．
-また，先頭に付いている+はpublicを表し，protectedは\#，
-privateは$-$で表す．
 
 RobotStateNodeのメンバ変数leg\_stateは，ロボットの脚の状態を表すビット列である．
+C++の標準ライブラリのstd::bitsetを用いて実装されており，28ビットの長さを持つ．
+ビット列の各ビットは，\figref{fig:leg_state_bit}のように定義されている．
+下位24bitは各脚の離散化された脚位置と遊脚状態を表し，上位4bitは後述するロボットの重心位置を表す．
 
-RobotStateNode構造体とVector3構造体は
+leg\_posとleg\_reference\_posは，ロボットの脚の位置を表すVector3構造体の配列である．
+Vector3構造体は，3次元ベクトルを表す構造体であり，\figref{fig:vector3}のように定義されている．
+leg\_posはロボットの脚の現在の位置を表し，leg\_reference\_posは離散化された脚位置の脚位置4の位置を表す．
+座標系は脚の付け根を原点とするローカル座標系であり，単位はmmである．
+
+center\_of\_mass\_global\_coordとpostureは，
+ロボットの重心位置と姿勢を表すVector3構造体とQuaternion構造体である．
+Quaternion構造体は，クォータニオンを表す構造体であり，\figref{fig:quaternion}のように定義されている．
+
+RobotStateNode構造体とVector3構造体，Quaternion構造体は
 それぞれメンバ変数を操作するためのメンバ関数を持っているが，
 グラフ探索とは関係がないため，ここでは説明を省略する．
 
@@ -45,17 +60,42 @@ RobotStateNode構造体とVector3構造体は
 \end{figure}
 
 \begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}
-    \begin{class}[text width=8cm]{Vector3}{0, 0}
-      \attribute{+ x : float}
-      \attribute{+ y : float}
-      \attribute{+ z : float}
-      \operation{}
-    \end{class}
-  \end{tikzpicture}
-  \caption{Vector3 Struct}
-  \label{fig:Vector3}  % chktex 24
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \begin{tikzpicture}
+        \begin{class}[text width=6cm]{Vector3}{0, 0}
+        \attribute{+ x : float}
+        \attribute{+ y : float}
+        \attribute{+ z : float}
+        \operation{}
+        \end{class}
+      \end{tikzpicture}
+      \caption{Vector3 Struct}
+      \label{fig:vector3}  % chktex 24
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \begin{tikzpicture}
+        \begin{class}[text width=6cm]{Quaternion}{0, 0}
+          \attribute{+ w : float}
+          \attribute{+ v : Vector3}
+          \operation{}
+        \end{class}
+      \end{tikzpicture}
+      \caption{Quaternion Struct}
+      \label{fig:quaternion}  % chktex 24
+    \end{minipage}       
+  \end{tabular}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=90mm, clip]{figure/chapter3/leg_state.png}
+    \caption{Leg State Bit}
+    \label{fig:leg_state_bit} % chktex 24
+  \end{center}
 \end{figure}
 
 \section{歩容パターンの再評価手法の実装}

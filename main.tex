@@ -22,6 +22,7 @@
 \usepackage{afterpage}
 \usepackage{enumerate}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{fancyhdr}
 \usepackage{subfigure}
 \usepackage{bm} %ベクトル表示
@@ -82,6 +83,11 @@
 \newcommand{\figref}[1]{Fig.\ref{#1}}
 \newcommand{\figpref}[1]{(Fig.\ref{#1} p.\pageref{#1})}
 \newcommand{\degree}{\char'27\kern-.3em\hbox{C}} 
+
+\newcommand{\hang}[1]{%
+	\settowidth{\hangindent}{#1}%
+	#1%
+}%
 
 %再定義コマンド
 \renewcommand{\figurename}{Fig.~}

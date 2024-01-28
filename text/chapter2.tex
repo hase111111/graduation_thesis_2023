@@ -277,14 +277,94 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 \subsection{脚軌道生成の失敗}
 先行研究ではグラフの階層構造化および脚軌道生成の分離によって，実時間内の計算が可能になった．
 しかし，実際に実機を用いて歩行実験を行ったところ，低頻度ではあるが脚軌道生成に失敗することがあった．
-失敗の原因として，脚の可動範囲に近似的な値を用いていることがあげられる．
+失敗の原因として，脚の可動範囲に近似的な値を用いていることが予想される．
 近似的な脚の可動範囲の境界近くは，実際には脚の可動範囲外であるが，
 近似的な値を用いているために脚の可動範囲内と判定されてしまっている領域があると考えられる．
 そのため，脚軌道や脚の接地点が脚の可動範囲外になってしまい，脚軌道生成に失敗することがあると考えられる．
 
 失敗の原因についてより具体的に議論するために，脚の可動範囲の解析を行ったため，
 その方法と結果を示す．
-\figref{fig:simu_leg_range}に，実際のロボットの脚の可動範囲と，近似的な脚の可動範囲を示す．
+解析の対象とするロボットは，Trossen Robotics社のPhantomX Mark I\hspace{-1.2pt}I \cite{cita:phantom_x_mark_2}  % chktex 2
+（以下PhantomX）とする．
+PhantomX（\figref{fig:phantomx_mk2}）は6脚ロボットであり，各脚に3つのアクチュエータを持つ．
+また，関節配置は脚の付け根からヨー・ピッチ・ピッチの順である．
+
+PhantomXの脚の可動範囲を求めるために，間接角度の逆運動解を求める式を導く．
+まず，\figref{fig:leg_coordinate_axis}にPhantomXの脚の座標系を示す．
+第1関節を原点とし，
+x軸をロボットの前方方向にとり，z軸をロボットに垂直で上向きにとる．
+y軸は右手座標系となるように設定する．
+また簡単のため，解析には\figref{fig:joint_and_link}のようにPhantomXのアクチュエータの回転軸を結んだ仮想的なリンクを用いる．
+リンク名は第1関節からCoxa Link，Femur Link，Tibia Linkであり，関節名はCoxa Joint，Femur Joint，Tibia Jointである．
+リンク長は第1関節から第3関節までそれぞれ$L_c$，$L_t$，$L_f$とし，
+間接角度をそれぞれ$\theta_c$，$\theta_t$，$\theta_f$とする．
+間接の座標は$P_c$，$P_t$，$P_f$とし，脚先の座標を$P_{end}$とする．
+$P_{end} = \{x_{end},y_{end},z_{end}\}$の時の
+このとき$P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
+求める式は\eqref{eq:theta_c}から\eqref{eq:theta_t}である．
+
+\begin{align}
+  P_c &= \{0,0,0\} \label{eq:theta_c} \\
+  \theta_c &= \arctan \frac{y_{end}}{x_{end}}  \\
+  P_f &= \{L_c \cos \theta_c, L_c \sin \theta_c, 0\}  \\
+  \theta_f &= \arctan \frac{z_{end}}{\sqrt{x_{end}^2 + y_{end}^2} - L_c} + 
+  \arccos \frac{L_t^2 + L_f^2 - x_{end}^2 - y_{end}^2 - z_{end}^2}{2 \cdot L_t \cdot L_f} \\
+  P_t &= \{(L_c + L_t \cos \theta_f)\cos \theta_c ,
+                  L_t \cos \theta_f \sin \theta_c , 
+                  L_t \sin \theta_f\}  \\
+  \theta_t &= \arctan \frac{z_{end} - z_t}{\sqrt{x_{end}^2 + y_{end}^2} - 
+              \sqrt{x_t^2 + y_t^2}} - \theta_f \label{eq:theta_t} 
+\end{align}
+
+\newpage
+
+% phantomx mk - 2 の図
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=60mm, clip]{figure/chapter2/phantomx_mk2.jpg}
+    \caption{PhantomX Mark I\hspace{-1.2pt}I}
+    \label{fig:phantomx_mk2} % chktex 24
+  \end{center}
+\end{figure}
+
+% 脚の座標系
+\begin{figure}[h]
+  \begin{tabular}{cc}
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \includegraphics[width=1.0\linewidth]{figure/chapter2/coordinate_axis.png}
+      \caption{Leg Coordinate Axis}
+      \label{fig:leg_coordinate_axis} % chktex 24
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \includegraphics[width=1.0\linewidth]{figure/chapter2/link_joint.png}
+      \caption{Joint and Link Name} 
+      \label{fig:joint_and_link} % chktex 24
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
+% 脚長の表
+\begin{table}[h]
+	\caption{Link Length of PhantomX}
+	\label{tab:link_len_phantom_x}  % chktex 24
+	\begin{center}
+   	\begin{tabular}{|c||c|} \hline  % chktex 44
+      Link Name & $[mm]$ \\ \hline  % chktex 44
+      Coxa Link & 52  \\ \hline  % chktex 44
+      Femur Link & 66  \\ \hline  % chktex 44
+      Tibia Link & 130  \\ \hline  % chktex 44
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\newpage
+
+以上の式を用いて，PhantomXの脚の可動範囲を求めたものが\figref{fig:simu_leg_range}である．
+\figref{fig:simu_leg_range}では，$\theta_c = 0$とし，x-z平面における脚の可動範囲を示している．
+黒色の実線で示される領域が実際の脚の可動範囲であり，緑色の実線で示される領域が近似された脚の可動範囲である．
+赤色の点線で示される直線は遊脚の高さを表しており，この直線よりも高く上げることはない．
 
 \begin{figure}[h]
   \begin{tabular}{cc}
@@ -310,8 +390,8 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 先行研究では脚軌道生成の失敗による動作の停止が報告された上，
 その原因は脚先が脚の可動範囲の外を通ることによるものであると考察されてきた．
 しかし，具体的にどのような理由で脚軌道生成が失敗するのかは明らかにされていなかった．
-そのため予備実験として，波東らの研究\cite{Hato_Graph_search}の実機試験と同じ条件で歩行シミュレーション実験を行い，
-脚軌道生成失敗の頻度，接地時の脚位置，そして脚軌道を確認することで，脚軌道生成失敗の原因を特定することを実験の目的とする．
+そのため予備実験として，波東らの研究\cite{Hato_Graph_search}の実機試験と同じ条件で歩行シミュレーション実験を行う．
+実験の目的は脚軌道生成の失敗の回数，接地時の脚位置，そして脚軌道を確認することで，脚軌道生成失敗の原因を特定することとする．
 
 波東らは段差のある地形と斜面のある地形でシミュレーション，および実機による直進歩行動作の実験を行った．
 また，実機試験時にはシミュレーション実験と歩行時の条件を変更していた．
@@ -335,10 +415,7 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 シミュレーションの計算環境は\tableref{tab:simulation_env}に示した．
 
 \subsubsection{モデルとするロボット}
-モデルとするロボットは，Trossen Robotics社のPhantomX Mark I\hspace{-1.2pt}I \cite{cita:phantom_x_mark_2}  % chktex 2
-（以下PhantomX）とする．
-PhantomX（\figref{fig:phantomx_mk2}）は6脚ロボットであり，各脚に3つのアクチュエータを持つ．
-また，関節配置は脚の付け根からヨー・ピッチ・ピッチの順である．
+モデルとするロボットは\figref{fig:phantomx_mk2}のPhantomX Mark I\hspace{-1.2pt}Iとする．
 
 \subsubsection{歩行する地形}
 歩行する地形を\figref{fig:terrain}に示す．
@@ -363,13 +440,7 @@ PhantomX（\figref{fig:phantomx_mk2}）は6脚ロボットであり，各脚に3
   \end{center}
 \end{table}
 
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[width=45mm, clip]{figure/chapter2/phantomx_mk2.jpg}
-    \caption{PhantomX Mark I\hspace{-1.2pt}I}
-    \label{fig:phantomx_mk2} % chktex 24
-  \end{center}
-\end{figure}
+
 
 % 地形の図
 \begin{figure}[htbp]
@@ -423,10 +494,80 @@ PhantomX（\figref{fig:phantomx_mk2}）は6脚ロボットであり，各脚に3
 \end{figure}
 
 \subsection{シミュレーションの結果}
-以下の図に脚軌道生成失敗時の脚先の座標を示す．
+まず，脚軌道生成失敗の回数を\tableref{tab:failure_count}に示す．
+
+% 書き方 https://uec.medit.link/latex/table.html
+
+\begin{table}[htbp]
+  \caption{Failure Count of Experimental Equipment}
+  \label{tab:failure_count_experimental}  % chktex 24
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|} \hline  % chktex 44
+    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} \\ \cline{3-7}  % chktex 44
+     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} \\ \cline{4-6}  % chktex 44
+     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 \\ \hline  % chktex 44
+    平面     & 351 & 0 & 9 & 2 & 0 & 11 \\ \hline  % chktex 44
+    上り斜面 & 645 & 0 & 10 & 1 & 0 & 11 \\ \hline  % chktex 44
+    下り斜面 & 867 & 0 & 20 & 9 & 0 & 29 \\ \hline  % chktex 44
+    上り段差 & 461 & 0 & 6 & 10 & 0 & 16 \\ \hline  % chktex 44
+    下り段差 & 383 & 0 & 9 & 0 & 0 & 9 \\ \hline  % chktex 44
+  \end{tabular}
+\end{table}
+ 
+\begin{table}[htbp]
+  \caption{Failure Count of Simulation}
+  \label{tab:failure_count_simulation}  % chktex 24
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|} \hline  % chktex 44
+    \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} \\ \cline{3-7}  % chktex 44
+     & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} \\ \cline{4-6}  % chktex 44
+     & の回数 & 可動範囲外 & 遊脚時 & 接地時 & \begin{tabular}{c}胴体平行\\移動時\end{tabular} & 回数 \\ \hline  % chktex 44
+    平面     & 315 & 47 & 16 & 4 & 0 & 67 \\ \hline  % chktex 44
+    上り斜面 & 460 & 63 & 11 & 22 & 1 & 97 \\ \hline  % chktex 44
+    下り斜面 & 611 & 29 & 53 & 28 & 0 & 110 \\ \hline  % chktex 44
+    上り段差 & 368 & 50 & 16 & 10 & 0 & 76 \\ \hline  % chktex 44
+    下り段差 & 331 & 33 & 39 & 6 & 0 & 78 \\ \hline  % chktex 44
+  \end{tabular}
+\end{table}
 
 \subsection{脚軌道生成に失敗する原因の考察}
 
 % 再評価手法の提案の章
 \section{歩容パターンの再評価手法}
+脚軌道生成の失敗を防ぐためには近似された脚の可動範囲を小さくするか，
+より正確に近似することで誤差をなくせばよい．
+しかし，前者は脚の接地点として選択される領域を縮めてしまうことになるため，
+グラフ探索による手法の利点である効率的な動作ができなくなってしまうことや，
+本来歩行可能であった地形を歩くことができなくなってしまうことなどの問題点がある．
+また，後者は細かく正確に近似するとキャッシュしておく値が増えるため，
+あらかじめ計算しておいた値にアクセスする際の呼び出しにかかる時間が長くなってしまう．
+これにより，計算時間が長くなってしまう問題点がある．
+先行研究のプログラムでは前者の方法でこの問題に対応をしていたが，
+結果的にシミュレーション時に歩行することが可能だった地形を，
+実機試験時では歩行することができなくなってしまっていた．
 
+私はグラフ探索の再評価を行うことで，脚軌道生成の失敗を防ぐことを提案する．
+ここでグラフ探索の再評価とは，
+グラフ探索による歩容パターン生成に成功し，脚軌道生成に失敗した場合，
+グラフ探索による歩容パターン生成をやり直して，脚軌道生成に失敗しない新しい歩容パターンを生成することを指す．
+歩容パターン生成をやり直す際，脚軌道生成に失敗しないよう，脚の近似された可動範囲を狭め，
+可動範囲外に接地することがないようにする．
+こうして歩容パターングラフを再生成し，グラフ探索を再度行うことで，
+脚軌道生成に失敗しないノードを取得することが可能となる．
+
+再評価手法は前述した2つの解決法と比べ，それらのもつ問題点を克服している．
+以下にそれぞれの解決策と比較した再評価手法の利点を示す．
+
+\begin{description}
+  \item[可動範囲を小さくすることによる，本来接地可能だった地点を選択できなくなってしまう問題]\mbox{}\\
+    脚の可動域をある程度広く確保することが可能になり，
+    可動範囲の境界に近い点を接地点として選択できるようになる．
+    加えて，脚軌道生成に失敗する場合，狭められた可動域に切り替えて失敗を防ぐことができる．
+  \item[より正確に近似された脚の可動範囲を確保する場合に，値を呼び出す際にかかる時間が増えてしまう問題]\mbox{}\\
+    再評価手法では歩容パターン生成をやり直す都合上，
+    単純計算で探索にかかる時間が倍になってしまう．
+    よってより正確に近似する方が実行時間的に優れると思える．
+    しかし，歩容パターングラフの生成時には $10^5 ~ 10^6$ 程度の数のノードを生成するため，
+    グラフ探索内の処理の時間の増加は，最終的な計算時間を大幅に増加させてしまう可能性がある．
+    つまり再評価手法では計算時間の増加を約 2 倍程度で済ませることができるといえる．
+\end{description}
