@@ -10,13 +10,18 @@
 波東らが用いた自由歩容パターン生成手法による直進動作と同様の手法によって歩容パターンを生成しているが，
 より早い処理の実現やプログラムの可読性・拡張性の向上のため，その実装方法を1部変更している．
 加えて，新たに3次元空間における旋回動作の実装と先行研究の手法の統合を行ったため，変更点を含め，改めて実装方法を説明する．
+
 プログラムの実装はC++20を用いて行っており，命名規則はGoogle~C++~Style~Guide\cite{cita:google_cpp_style_guide}にしたがっている．
+開発にはVisual~Studio~2022を用いており，プログラムのビルドにはVisual~Studio~2022のMSVCコンパイラを用いている．
+
 また，この章におけるクラスや構造体の図はUML（Unified~Modeling~Language）を用いて表現されており，
 上からクラス・構造体の名前，メンバ変数，メンバ関数を表している．
 メンバ変数は，アクセス修飾子，変数名，型の順に記述されており，
 メンバ関数は，アクセス修飾子，関数名，引数，戻り値の順に記述されている．
 アクセス修飾子は記号を用いて表し，+はpublic，protectedは\#，
 privateは$-$である．
+クラス間の関係は，継承関係は空白の三角形，包含関係は空白の菱形で表している．
+包含関係は，クラスのメンバ変数として他のクラスを持つことである．
 
 \subsection{プログラム全体の流れ}
 グラフ探索による自由歩容パターン生成手法では，
@@ -102,6 +107,8 @@ IGraphSearcherインターフェイスは，グラフ探索を行う処理を表
   \caption{Graph Search Class Diagram}
   \label{fig:graph_search_class_diagram}  % chktex 24
 \end{figure}
+
+\newpage
 
 \subsection{ノードを表現する構造体}
 次に，歩容パターングラフを作成する処理を記述するために，ノードについて説明する．
@@ -201,7 +208,7 @@ RobotStateNode構造体とVector3構造体，Quaternion構造体は
 
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=90mm, clip]{figure/chapter3/leg_state.png}
+    \includegraphics[width=80mm, clip]{figure/chapter3/leg_state.png}
     \caption{Leg State Bit}
     \label{fig:leg_state_bit} % chktex 24
   \end{center}
@@ -257,6 +264,7 @@ kSpotTurnRotAxisは，ロボットの旋回軸をspot\_turn\_rot\_axis\_で指�
   \end{center}
 \end{table}
 
+\newpage
 
 \subsection{地形を表現する構造体}
 地形を表現するMapState構造体を\figref{fig:map_class_diagram}に示す．
@@ -469,6 +477,24 @@ NodeCreatorLegUpDownクラスでは，処理を行うノードの脚の状態を
   \end{center}
 \end{table}
 
+\subsubsection{直進動作時におけるノード生成の順番}
+直進動作を行う時の，未探索のノードから遷移可能なノードをグラフに追加する際のルールについて説明する．
+RobotStateNodeのnext\_move\_には，次の動作を表すHexapodMove型の変数が格納されている．
+この変数の値によってどのNodeCreatorクラスを使用するかが決定される．
+それぞれのNodeCreatorクラスは子ノードを作成する際に，
+親ノードのnext\_move\_の値から子ノードのnext\_move\_の値を以下のルールに基づいて決定する．
+
+\begin{itemize}
+  \item 親ノード：脚の水平運動 → 子ノード：脚の上下運動
+  \item 親ノード：脚の上下運動 → 子ノード：重心の上下移動
+  \item 親ノード：重心の上下移動 → 子ノード：重心の平行移動
+  \item 親ノード：重心の平行移動 → 子ノード：脚の水平運動
+\end{itemize}
+
+このようなルールを定めることによって明らかに無意味な動作
+（たとえば，重心を上げる→重心を下げる動作を繰り返すものなど）
+を生成することをあらかじめ防ぐことができる．
+なお，直進動作以外の動作を行う場合は別のルールを用いてグラフを作成している．
 
 \subsection{グラフ探索時のノードの評価方法}
 グラフ探索時では歩容パターングラフのもっとも深いノードをすべて比較し，
@@ -502,13 +528,12 @@ IGraphSearcherを継承した具象クラスではノードを評価する関数
 \end{enumerate}
 
 \section{歩容パターンの再評価手法の実装}
-歩容パターンの再評価手法は，グラフ探索による自由歩容パターン生成手法の実装において，
-IGaitPatternGeneratorインターフェイスを継承したクラスを作成することで実装できる．
+歩容パターンの再評価手法はIGaitPatternGeneratorインターフェイスを継承したクラスを作成することで実装できる．
 IGaitPatternGeneratorインターフェイスを用いたことで，
 デコレーターパターンを用いて容易に再評価手法を実装している．
 デコレーターパターンとは，既存のクラスに新たな機能を追加するためのデザインパターンである．
-デコレータ（デコレータパターンを用いて作られたクラス）はインターフェイスを継承するかつ，
-インターフェイスを継承したクラスをメンバ変数として持つ．
+デコレータ（デコレータパターンを用いて作られたクラス）はあるインターフェイスを継承するかつ，
+自身と同じインターフェイスを継承したクラスをメンバ変数として持つ．
 そしてメンバ関数を呼び出す際に，メンバ変数のメンバ関数と自身の持つ処理を実行することで，
 既存のクラスをそのままに新たな機能を追加することができる．
 
@@ -519,7 +544,35 @@ GaitPatternGeneratorRevaluationクラスはIGaitPatternGeneratorインターフ�
 1つ目のポインタは再評価手法を適用する前の歩容パターン生成手法を，
 2つ目のポインタは再評価手法を適用した後の歩容パターン生成手法を指している．
 
-IGaitPatternGeneratorインターフェイスの関数であるGetNextNodeByGraphSearch関数
+メンバ関数であるGetNextNodeByGraphSearch関数が呼ばれた場合，
+まず，1つ目のポインタのGetNextNodeByGraphSearch関数を呼び出し結果を取得する．
+取得したノードから脚軌道生成を行い，成功した場合はそのノードを返す．
+失敗した場合は，2つ目のポインタのGetNextNodeByGraphSearch関数を呼び出し結果を取得する．
+こうすることで，\chref{歩容パターンの再評価手法の提案}で提案した，
+脚軌道生成に失敗した場合のみグラフ探索をやり直す処理を実装できる．
+
+再評価時には脚軌道生成の失敗を防ぐために，近似された脚の可動範囲を狭める．
+近似された脚の可動範囲は\chref{歩容パターンの再評価手法の提案}で述べたように，
+最小半径を$140 [mm]$に設定すればよいため，
+狭めた前と後の脚の可動範囲は以下のような条件に設定する．
+また，それぞれを図示したものを\figref{fig:leg_range_revaluation_before}と
+\figref{fig:leg_range_revaluation_after}に示す．
+
+\begin{enumerate}
+  \item 再評価前\par
+        \begin{itemize}
+          \item 最小半径を$130 [mm]$に設定
+          \item 最大半径は\chref{歩容パターンの再評価手法の提案}で述べた計算方法で設定
+          \item 遊脚高さは$-20 [mm]$に設定
+        \end{itemize}
+  \item 再評価後\par
+        \begin{itemize}
+          \item 最小半径を$140 [mm]$に設定
+          \item 最大半径は\chref{歩容パターンの再評価手法の提案}で述べた計算方法で設定
+          \item 遊脚高さは$-20 [mm]$に設定
+        \end{itemize}
+\end{enumerate}
+
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}  % [show background grid]
@@ -546,6 +599,23 @@ IGaitPatternGeneratorインターフェイスの関数であるGetNextNodeByGrap
   \label{fig:gait_pattern_generator_revaluation}  % chktex 24
 \end{figure}
 
+\begin{figure}[h]
+  \begin{tabular}{cc}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter3/revaluetion_before.png}
+          \caption{Leg Range Before Revaluation}
+          \label{fig:leg_range_revaluation_before} % chktex 24
+      \end{minipage}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter3/revaluetion_after.png}
+          \caption{Leg Range After Revaluation}
+          \label{fig:leg_range_revaluation_after} % chktex 24
+      \end{minipage}
+  \end{tabular}
+\end{figure}
+
 \section{グラフ探索による自由歩容パターン生成手法の統合}
 先行研究において，グラフ探索による自由歩容パターン生成手法はロボットの動作によって別のものを使用しており，
 それぞれ別のプログラムで実装されている．
@@ -553,13 +623,23 @@ IGaitPatternGeneratorインターフェイスの関数であるGetNextNodeByGrap
 より柔軟な動作をグラフ探索による自由歩容パターン生成手法で実現するため，
 グラフ探索による自由歩容パターン生成手法を統合し，1つのプログラムで実行できるようにした．
 
+この作業は本研究の趣旨とは異なるが，
+直進以外のさまざまな動作でも脚軌道生成の失敗を防ぐことができるかを確認することができれば，
+再評価手法がより汎用的なものであることを示すことができる．
+そのため，本作業を実施した．
+
 \subsection{3次元空間における旋回動作の実装}
 先行研究において，すでに実装されているロボットの動作を\tableref{tab:implemented_robot_operation}に示す．
 表において，2次元空間とはロボットが平面上で動作することを表し，
 3次元空間とはロボットが立体的な地形で動作することを表す．
 また，$\bigcirc$がついている動作は実装済みであることを表し，
 $\times$がついている動作は未実装であることを表す．
-
+この表より，3次元空間における動作は直進以外実装されていないことがわかる．
+より柔軟な動作を実現するという目的のもとでは，
+統合されたプログラムは3次元空間に対応していることが望ましい．
+よって3次元空間における旋回動作を実装した．
+旋回動作の研究は椎名ら\cite{Shina_Graph_search}によって行われており，
+旋回の半径によって異なる歩容パターングラフの作成と，グラフ探索が行われていた．
 
 \begin{table}[htbp]
 	\caption{Implemented Robot Operation}
