@@ -421,7 +421,7 @@ NodeCreatorBodyRotクラスは処理を行うノードから，
 届かない場合，そのノードは作成しない．
 
 \subsubsection{脚の上下運動・水平運動}
-\chref{歩容パターンの再評価手法の提案}で述べたように，
+\chref{chapter:歩容パターンの再評価手法の提案}で述べたように，
 脚の水平運動は脚の状態が等しく，別の階層にあるノード間での遷移で行うことができ，
 脚の上下運動は同じ階層にあるノード間での遷移で行うことができる．
 脚の状態が等しく，別の階層にある子ノードを生成する処理はNodeCreatorLegHierarchyクラスで実装しており，
@@ -548,11 +548,11 @@ GaitPatternGeneratorRevaluationクラスはIGaitPatternGeneratorインターフ�
 まず，1つ目のポインタのGetNextNodeByGraphSearch関数を呼び出し結果を取得する．
 取得したノードから脚軌道生成を行い，成功した場合はそのノードを返す．
 失敗した場合は，2つ目のポインタのGetNextNodeByGraphSearch関数を呼び出し結果を取得する．
-こうすることで，\chref{歩容パターンの再評価手法の提案}で提案した，
+こうすることで，\chref{chapter:歩容パターンの再評価手法の提案}で提案した，
 脚軌道生成に失敗した場合のみグラフ探索をやり直す処理を実装できる．
 
 再評価時には脚軌道生成の失敗を防ぐために，近似された脚の可動範囲を狭める．
-近似された脚の可動範囲は\chref{歩容パターンの再評価手法の提案}で述べたように，
+近似された脚の可動範囲は\chref{chapter:歩容パターンの再評価手法の提案}で述べたように，
 最小半径を$140 [mm]$に設定すればよいため，
 狭めた前と後の脚の可動範囲は以下のような条件に設定する．
 また，それぞれを図示したものを\figref{fig:leg_range_revaluation_before}と
@@ -562,13 +562,13 @@ GaitPatternGeneratorRevaluationクラスはIGaitPatternGeneratorインターフ�
   \item 再評価前\par
         \begin{itemize}
           \item 最小半径を$130 [mm]$に設定
-          \item 最大半径は\chref{歩容パターンの再評価手法の提案}で述べた計算方法で設定
+          \item 最大半径は\chref{chapter:歩容パターンの再評価手法の提案}で述べた計算方法で設定
           \item 遊脚高さは$-20 [mm]$に設定
         \end{itemize}
   \item 再評価後\par
         \begin{itemize}
           \item 最小半径を$140 [mm]$に設定
-          \item 最大半径は\chref{歩容パターンの再評価手法の提案}で述べた計算方法で設定
+          \item 最大半径は\chref{chapter:歩容パターンの再評価手法の提案}で述べた計算方法で設定
           \item 遊脚高さは$-20 [mm]$に設定
         \end{itemize}
 \end{enumerate}
@@ -625,8 +625,7 @@ GaitPatternGeneratorRevaluationクラスはIGaitPatternGeneratorインターフ�
 
 この作業は本研究の趣旨とは異なるが，
 直進以外のさまざまな動作でも脚軌道生成の失敗を防ぐことができるかを確認することができれば，
-再評価手法がより汎用的なものであることを示すことができる．
-そのため，本作業を実施した．
+再評価手法がより汎用的なものであることを示すことができると考え，本作業を実施した．
 
 \subsection{3次元空間における旋回動作の実装}
 先行研究において，すでに実装されているロボットの動作を\tableref{tab:implemented_robot_operation}に示す．
@@ -638,8 +637,11 @@ $\times$がついている動作は未実装であることを表す．
 より柔軟な動作を実現するという目的のもとでは，
 統合されたプログラムは3次元空間に対応していることが望ましい．
 よって3次元空間における旋回動作を実装した．
+
 旋回動作の研究は椎名ら\cite{Shina_Graph_search}によって行われており，
 旋回の半径によって異なる歩容パターングラフの作成と，グラフ探索が行われていた．
+今回は簡単のため，旋回の半径が$0 [mm]$である場合（超信地旋回的に旋回を行う場合）のみを対象とし，
+以降，旋回と記述するときはそのような旋回を指すものとする．
 
 \begin{table}[htbp]
 	\caption{Implemented Robot Operation}
