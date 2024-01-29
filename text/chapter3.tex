@@ -739,4 +739,24 @@ GaitPatternGeneratorBasicクラスを用いることができる．
 1つのプログラムに統合する手法が適していると考えた．
 以下に自由歩容パターン生成手法を切り替えるクラスの実装方法を示す．
 
+GaitPatternGeneratorSwitchMoveクラスで自由歩容パターン生成手法を切り替える処理を実装した．
+基本的な実装方法はGaitPatternGeneratorRevaluationクラスと同じで，デコレーターパターンを用いる．
+GaitPatternGeneratorSwitchMoveクラスもIGaitPatternGeneratorインターフェイスを継承しており，
+メンバ変数にIGaitPatternGeneratorインターフェイスのポインタを2つ持っている．
+これらのポインタはコンストラクタで初期化され，
+1つ目のポインタは切り替え前の自由歩容パターン生成手法を，
+2つ目のポインタは切り替え後の自由歩容パターン生成手法を実装したクラスを指している．
+GetNextNodeByGraphSearch関数が呼ばれた場合，
+RobotOperationで指定された動作によって，
+1つ目のポインタのGetNextNodeByGraphSearch関数を呼び出すか，
+2つ目のポインタのGetNextNodeByGraphSearch関数を呼び出し，
+その結果を返すようになっている．
 
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=120mm, clip]{figure/chapter3/switch_move.png}
+    \caption{Move Switcher Class Diagram}
+    \label{fig:move_Switcher}  % chktex 24
+  \end{center}
+\end{figure}
