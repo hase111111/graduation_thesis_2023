@@ -27,7 +27,7 @@
 \usepackage{subfigure}
 \usepackage{bm} %ベクトル表示
 \usepackage{slashbox}  % https://qiita.com/ta_b0_/items/2619d5927492edbb5b03
-\usepackage{listings, jvlisting}
+\usepackage{listings, jlisting}
 \usepackage{url}
 \usepackage[final,dvipdfmx]{pdfpages}
 \usepackage{pgf-umlcd}
@@ -84,6 +84,8 @@
 \newcommand{\figpref}[1]{(Fig.\ref{#1} p.\pageref{#1})}
 \newcommand{\degree}{\char'27\kern-.3em\hbox{C}} 
 
+\newcommand{\coderef}{\lstlistingname~\ref}
+
 \newcommand{\hang}[1]{%
 	\settowidth{\hangindent}{#1}%
 	#1%
@@ -103,6 +105,8 @@
 \renewcommand{\umltextcolor}{black}
 \renewcommand{\umlfillcolor}{white}
 \renewcommand{\umldrawcolor}{black}
+
+\renewcommand{\lstlistingname}{Code}
 
 %余白変更
 \setlength{\textwidth}{\fullwidth}
@@ -127,8 +131,8 @@
     %!!重要!!
     %各章は奇数ページから開始するように調整すること
     %つまり各章は偶数ページで終わるように、改ページ等を使用して調整する。
-    \input{text/chapter1.tex} % 第1章
-    \input{text/chapter2.tex} % 第2章
+    %\input{text/chapter1.tex} % 第1章
+    %\input{text/chapter2.tex} % 第2章
     \input{text/chapter3.tex} % 第3章
     \input{text/chapter4.tex} % 第4章
     \input{text/chapter5.tex} % 第5章

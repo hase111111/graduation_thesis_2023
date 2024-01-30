@@ -18,21 +18,22 @@ C++20では，C++17からの変更点として，以下のようなものがあ�
 \section{constexpr変数・関数}
 constexpr関数はコンパイル時に評価される関数であり，
 C言語におけるマクロ関数のような処理を実現するために使用される．
-たとえば，以下のようなプログラムを考える．
+たとえば，\coderef{convert_func_as_macro}のようなプログラムを考える．
 
 \newpage  % 改ページする
 
 \begin{lstlisting}[caption=convert func as macro,label=convert_func_as_macro]
 #include <iostream>
 
-// defined as macro
+// マクロ関数として定義する．
 #define CONVERT_TO_RAD(deg) (deg * 3.1415926535f / 180.0f)  
 
 int main()
 {
   float deg = 90.0f;
   
-  // It will deploy deg * 3.1415926535f / 180.0f.
+  // CONVERT_TO_RAD(deg)はプリコンパイル時に置換される．
+  // よって deg * 3.1415926535f / 180.0f に置換される．
   std::cout << CONVERT_TO_RAD(deg) << std::endl;
 }
 \end{lstlisting}
@@ -70,7 +71,7 @@ float型との掛け算演算子が定義されていればコンパイルは通
 \begin{lstlisting}[caption=convert func as constexpr,label=convert_func_as_constexpr]
 #include <iostream>
 
-// defined as constexpr function
+// constexpr関数として定義する．
 constexpr float ConvertToRad(float deg)
 {
   return deg * 3.1415926535f / 180.0f;
@@ -78,10 +79,11 @@ constexpr float ConvertToRad(float deg)
 
 int main()
 {
-  // declared as constexpr variable
+  // deg を constexpr変数として定義する．
   constexpr float deg = 90.0f;
   
-  // It will deploy 1.57079632675f.
+  // ConvertToRad(deg)はコンパイル時に実行される．
+  // よって 1.57079632675f に置換される．
   std::cout << ConvertToRad(deg) << std::endl;
 }
 \end{lstlisting}

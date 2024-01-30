@@ -43,7 +43,7 @@ GraphSearcherクラスは渡された歩容パターングラフを探索し，
 \figref{fig:graph_search_class_diagram}にグラフ探索による自由歩容パターン生成手法を実装したクラスのクラス図を示す．
 GaitPatternGeneratorBasicクラスは，自由歩容パターン生成手法を実装したクラスである．
 GaitPatternGeneratorBasicクラスは，IGaitPatternGeneratorインターフェイスを継承しており，
-メンバ関数としてGetNextNodeByGraphSearch関数を持っている．
+GetNextNodeByGraphSearch関数を実装している．
 GetNextNodeByGraphSearch関数は，現在のロボットの状態を表すノードを引数，
 地形の情報，目標位置・目標姿勢を引数に取り，グラフ探索によって最適な歩容パターンを返す．
 IGaitPatternGeneratorインターフェイスを介することで，
@@ -116,11 +116,21 @@ IGraphSearcherインターフェイスは，グラフ探索を行う処理を表
 \newpage
 
 \subsection{ノードを表現する構造体}
-次に，歩容パターングラフを作成する処理を記述するために，ノードについて説明する．
+歩容パターングラフを作成する処理を記述するために，ノードの実装について説明する．
+この章における説明では，変数の型のサイズについて言及しているが，
+C++はコンパイラや環境によって変数の型のサイズは異なる場合があるため，
+本研究で使用しているVisual~Studio~2022のMSVCコンパイラにおけるサイズを示していることを注意されたい．
+
 歩容パターングラフのノードは\figref{fig:robot_state_node}のような，
 ロボットの状態を表す構造体RobotStateNodeで表現した．
+この構造体は先行研究でLNODE構造体として実装されていたものと概ね同じである．
 歩容パターングラフではRobotStateNodeを配列とすることで作成するため，
 RobotStateNode構造体はサイズを小さくし，メモリの使用量を少なくすることが求められる．
+そのため浮動小数点型の変数はすべてdouble型ではなく，float型で表現している．
+double型とfloat型のサイズはそれぞれ8byteと4byteであり，float型のほうがサイズは小さい．
+float型の精度はdouble型より低く，有効数字は6桁程度であるが，
+ロボットの状態を表す変数の精度は6桁程度で十分であるため，
+float型を用いている．
 
 RobotStateNodeのメンバ変数leg\_stateは，ロボットの脚の状態を表すビット列である．
 C++の標準ライブラリのstd::bitsetを用いて実装されており，28ビットの長さを持つ．
@@ -138,7 +148,7 @@ center\_of\_mass\_global\_coordとpostureは，
 グローバル座標におけるロボットの重心位置と姿勢を表すVector3構造体とQuaternion構造体である．
 Quaternion構造体は，クォータニオンを表す構造体であり，\figref{fig:quaternion}のように定義されている．
 
-next\_moveは，次に行う動作を表すHexapodMove列挙型である．
+next\_moveは，次に行う動作を表す列挙型のHexapodMove型で宣言された変数である．
 先行研究ではint型で表現していたが，可読性の向上のために列挙型を用いている．
 parent\_indexは，親ノードのインデックスを表すint型である．
 先行研究では親ノードへのポインタを用いていたが，
