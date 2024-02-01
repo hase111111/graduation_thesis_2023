@@ -59,6 +59,12 @@ IGraphSearcherインターフェイスは，グラフ探索を行う処理を表
 歩容パターングラフの作成，歩容パターングラフの探索はそれぞれ
 行う動作によって異なる方法で処理を行うためインターフェイスを作成している．
 
+以降の説明ではまず，歩容パターングラフのノードの定義，
+ロボットの進行方向を表す構造体の定義，
+ロボットが歩行する地形を表す構造体の定義について説明する．
+次に，歩容パターングラフを作成するプログラムの実装，
+歩容パターングラフの探索を行うクラスの実装について説明する．
+
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=65mm, clip]{figure/chapter3/sequence_main.png}
@@ -135,14 +141,18 @@ float型を用いている．
 RobotStateNodeのメンバ変数leg\_stateは，ロボットの脚の状態を表すビット列である．
 C++の標準ライブラリのstd::bitsetを用いて実装されており，28ビットの長さを持つ．
 ビット列の各ビットは，\figref{fig:leg_state_bit}のように定義されている．
-下位24bitは各脚の離散化された脚位置と遊脚状態を表し，上位4bitは後述するロボットの重心位置を表す．
+下位24bitは各脚の離散化された脚位置と遊脚状態を表し，上位4bitは後述する離散化されたロボットの重心位置を表す．
+下位24bitは1脚につき4bitで表現されており，下位3bitが離散化された脚位置を表す
+上位1bitは支持脚の際はbitを立てて，遊脚の際はbitを折る．
 このようにすることで複数のパラメータを1つの変数のみで表現することができ，
 メモリの使用量を削減することができる．
 
 leg\_posとleg\_reference\_posは，ロボットの脚の位置を表すVector3構造体の配列である．
 Vector3構造体は，3次元ベクトルを表す構造体であり，\figref{fig:vector3}のように定義されている．
 leg\_posはロボットの脚の現在の位置を表し，leg\_reference\_posは離散化された脚位置の脚位置4の位置を表す．
+座標系の取り方は\figref{fig:leg_coord}のように定義されている．
 座標系は脚の付け根を原点とするローカル座標系であり，単位はmmである．
+ロボットの前方に$x$軸，上方に$z$軸をとり，右手座標系となるように$y$軸を取っている．
 
 center\_of\_mass\_global\_coordとpostureは，
 グローバル座標におけるロボットの重心位置と姿勢を表すVector3構造体とQuaternion構造体である．
@@ -169,8 +179,9 @@ parent\_indexを根ノードのインデックス，depthを$1$に設定する�
 RobotStateNode構造体とVector3構造体，Quaternion構造体は
 それぞれメンバ変数を操作するためのメンバ関数を持っているが，
 グラフ探索の処理とは直接的な関係がないため，ここでは説明を省略する．
+\\
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \begin{tikzpicture}
     \begin{class}[text width=8cm]{RobotStateNode}{0, 0}
@@ -189,7 +200,7 @@ RobotStateNode構造体とVector3構造体，Quaternion構造体は
   \label{fig:robot_state_node}  % chktex 24
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \begin{tabular}{cc}
     \begin{minipage}[t]{0.45\hsize}
       \centering
@@ -220,12 +231,21 @@ RobotStateNode構造体とVector3構造体，Quaternion構造体は
   \end{tabular}
 \end{figure}
 
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[width=80mm, clip]{figure/chapter3/leg_state.png}
-    \caption{Leg State Bit}
-    \label{fig:leg_state_bit} % chktex 24
-  \end{center}
+\begin{figure}[h]
+  \begin{tabular}{cc}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter3/leg_state.png}
+          \caption{Leg State Bit}
+          \label{fig:leg_state_bit} % chktex 24
+      \end{minipage}
+      \begin{minipage}{0.5\textwidth}
+          \centering
+          \includegraphics[width=1.0\linewidth]{figure/chapter3/leg_coord.png}
+          \caption{Leg Coordinate of RobotStateNode} 
+          \label{fig:leg_coord} % chktex 24
+      \end{minipage}
+  \end{tabular}
 \end{figure}
 
 \subsection{目標位置・目標姿勢を表現する構造体}
@@ -732,7 +752,7 @@ GaitPatternGeneratorBasicクラスを用いることができる．
     RobotOperationで指定された姿勢を目標姿勢とし，
     評価を行うノードの姿勢と目標姿勢との角度の差を評価値として使用する．
     現在の最高評価ノードと比較して評価が高ければ最高評価ノードを更新する．
-  \item 脚の回転角どの平均値の評価\par
+  \item 脚の回転角度の平均値の評価\par
     （2）も最大評価ノードと同じであれば，脚の回転角度の平均値を評価する．
     根ノードと評価を行うノードの脚の回転角度の平均値を計算し，
     その値が大きいほど評価を高くする．
