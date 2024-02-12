@@ -30,21 +30,21 @@
   \centering
   \includegraphics[width=0.8\linewidth]{figure/chapter5/walking-terrain.jpg}
   \caption{Walking Terrain}
-  \label{fig:walking-terrain}
+  \label{fig:walking-terrain}  % chktex 24
 \end{figure}
 
 \subsection{使用したロボット}
 実験ではシミュレーションのモデルとしていたPhantomXを使用した．
 内部電源では長時間稼働させるには容量が足りないため，
 電源には外部電源として安定化電源（$12V，5A$）を使用した．
-ロボットへの指令値は，グラフ探索による自由歩容パターン生成手法を用いてPCで生成し，
+ロボットへの指令値は，グラフ探索による自由歩容パターン生成手法を用いてPCで計算し，
 XBeeを用いてPhantomXに送信した．
 
 ロボットの脚軌道は矩形軌道を用いた．
 また，本実験は先行研究では歩行ができなかった地形で歩行ができることを示すことが目的であるため，
 地形は既知のものとし，地形の形状をセンサで計測することは行わなかった．
 
-\subsection{歩行条件}
+\subsection{実験の条件}
 歩行実験時の歩行条件を以下に示す．
 
 \begin{itemize}
@@ -62,8 +62,40 @@ XBeeを用いてPhantomXに送信した．
   \item 近似された可動範囲の最小半径は140mmとする
 \end{itemize}
 
-\section{結果}
-実験の様子を以下に示す．
+\subsection{実験の手順}
+まず，ロボットを段差の手前に配置した．
+次に，130mmの段差を上りおよび下りするまでの自由歩容パターンを生成し，
+ロボットにXBeeを通じて送信した．
+そして，送信された指令値に基づいてロボットが歩行する様子を撮影した．
+ロボットの6脚すべてが段差を乗り越えることができた場合に，
+ロボットが段差を乗り越えたと判断した．
 
+\section{結果}
+130mmの段差を歩行する様子を\figref{fig:ch5_experiment_1}に示す．
+この図は，ロボットが動作する様子をタイムラプスで撮影したものである．
+30枚の写真で構成されており，初めから順番に01から30までの番号が右上に振られている．
+この図から，ロボットが重心高さを変更し130mmの段差を上る様子が確認できる．
+ロボットは最初，画面右側に配置され，胴体高さを上げたのち，
+段差の上に脚を接地して段差を上り，画面左側に向けて歩行している．
+
+130mmの段差を下りる様子を\figref{fig:ch5_experiment_2}に示す．
+この図も同様にタイムラプスで撮影している．
+この図から，ロボットが重心高さを変更し130mmの段差を下る様子が確認できる．
+ロボットは最初，画面左側に配置され，段差の下へ胴体を乗り出しつつ脚を接地し，
+段差を下ったのち胴体高さを下げて，画面右側に向けて歩行している．
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figure/chapter5/up.png}
+  \caption{Actual Equipment Experiment (130mm steps up)}
+  \label{fig:ch5_experiment_1}  % chktex 24
+\end{figure}
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figure/chapter5/down.png}
+  \caption{Actual Equipment Experiment (130mm steps down)}
+  \label{fig:ch5_experiment_2}  % chktex 24
+\end{figure}
 
 \section{考察}
