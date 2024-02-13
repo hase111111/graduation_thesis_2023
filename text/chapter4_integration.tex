@@ -18,9 +18,131 @@
 歩行条件についても直進動作のシミュレーション実験および，
 旋回動作のシミュレーション実験と同様とする．
 
+\subsubsection{歩行する経路}
+本シミュレーション実験で用いる，ロボットが歩行する経路は，
+直進動作と旋回動作を含む歩容パターンを生成する必要があるような経路である必要となる．
+そのような経路のうち，単純な経路として，
+始点から1000mm直進したのち，$180^{\circ}$旋回を行って，再び1000mm直進させ始点に戻る経路をシミュレーションで用いた．
+
+地形は平面，130mmの段差がある地形，15度傾斜した地形の3つの地形を用いる．
+平面な地形を用いる場合の経路を\figref{fig:ch4_integration_flat_map}に示した．
+また，130mmの段差がある地形を用いる場合の経路を\figref{fig:ch4_integration_130mm_map}に，
+15度傾斜した地形を用いる場合の経路を\figref{fig:ch4_integration_15deg_map}に示した．
+\figref{fig:ch4_integration_flat_map}，
+\figref{fig:ch4_integration_130mm_map}，
+\figref{fig:ch4_integration_15deg_map}では
+ロボットが直進する方向にx軸，ロボット上向きにz軸とるようなワールド座標系を用いる．
+平面な地形では，始点を$(0,0,0)$，中継点を$(1000,0,0)$，終点を$(0,0,0)$とする．
+130mmの段差がある地形では，始点を$(0,0,0)$，中継点を$(1000,0,130)$，終点を$(0,0,0)$とする．
+15度傾斜した地形では，始点を$(0,0,0)$，中継点を$(1000,0,129.5)$，終点を$(0,0,0)$とする．
+
+% chapter4/integration_flat_map.png
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{figure/chapter4/integration_flat_map.png}
+    \caption{Flat terrain}
+    \label{fig:ch4_integration_flat_map}  % chktex 24
+  \end{center}
+\end{figure}
+
+% chapter4/integration_130mm_map.png
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\linewidth,trim={50 50 50 50}, clip]{figure/chapter4/integration_130mm_map.png}
+    \caption{130mm steps terrain}
+    \label{fig:ch4_integration_130mm_map}  % chktex 24
+  \end{center}
+\end{figure}
+
+% chapter4/integration_15deg_map.png
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\linewidth,trim={50 50 50 50}, clip]{figure/chapter4/integration_15deg_map.png}
+    \caption{15 degrees slope terrain}
+    \label{fig:ch4_integration_15deg_map}  % chktex 24
+  \end{center}
+\end{figure}
+
 \subsubsection{シミュレーションの手順}
+シミュレーション実験は以下の手順で行う．
+
+\begin{enumerate}
+  \item ロボットを始点に配置する．
+  \item グラフ探索による自由歩容パターン生成手法を統合したプログラムを用いて，
+        経路を追従するような歩容パターンを生成し，歩行させる．
+  \item 中継点付近で旋回動作と直進動作を切り替えて歩行することができるかを確認する．
+  また歩容パターン生成に失敗することや脚軌道生成に失敗することなく歩行できるかを確認する．
+  \item 地形を変更し，（1）から（3）を繰り返す．
+\end{enumerate}
 
 
 \subsection{シミュレーション実験の結果}
+\figref{fig:ch4_result_integration}に各地形でのロボットの脚先座標を示す．
+\figref{fig:ch4_result_integration}では\figref{fig:ch5_result_turn1}，\figref{fig:ch5_result_turn2}と同様に，
+軸を取っており，脚先座標も支持脚時を青い丸点，遊脚時を赤い丸点，脚軌道生成に失敗した際の脚軌道の中継点を水色の$\times$で示している．
+この図より，脚軌道が可動範囲外を通ることはなかったことがわかる．
+
+また，ロボットが歩行する様子を\figref{fig:ch4_result_integration_view_flat}，\figref{fig:ch4_result_integration_view_130mm}に示す．
+これら図ではロボットの重心の移動軌跡を黄色い線で示している．
+加えてロボットの正面をわかりやすくするために，ロボット胴体の正面に赤い球を表示している．
+それぞれ，動作の様子をタイムラプス的に20枚の写真で示している．
+右上に01から20までの番号が振られており，初めから順番にロボットの動作を確認することができる．
+この図よりロボットが直進動作から旋回動作に動作を切り替えていることがわかる．
+
+% 脚先を示すグラフ
+\begin{figure}[htbp]
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.45\hsize}
+      \begin{center}
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/integration/flat.png}
+      \text{(a) flat}
+      \end{center}
+    \end{minipage} 
+    &
+    \begin{minipage}[t]{0.45\hsize}
+      \begin{center}
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/integration/130mm.png}
+      \text{(b) 130mm steps}
+      \end{center}  
+    \end{minipage}
+    \\
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/integration/15deg.png}
+      \centering
+      \text{(c) $15^{\circ}$ slope}
+    \end{minipage} 
+    &    
+    \\
+  \end{tabular}
+  \caption{Leg Ground Points for Each Terrain}
+  \label{fig:ch4_result_integration} % chktex 24
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figure/chapter4/integration/flat_view.png}
+    \caption{View of Operation on a Flat}
+    \label{fig:ch4_result_integration_view_flat}  % chktex 24
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figure/chapter4/integration/130mm_view.png}
+    \caption{View of Operation on a 130mm Step}
+    \label{fig:ch4_result_integration_view_130mm}  % chktex 24
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figure/chapter4/integration/15deg_view.png}
+    \caption{View of Operation on a $15^{\circ}$ Slope}
+    \label{fig:ch4_result_integration_view_15deg}  % chktex 24
+  \end{center}
+\end{figure}
+
+
 
 \subsection{考察}
