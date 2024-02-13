@@ -11,18 +11,49 @@
 
 \subsection{シミュレーション実験の条件}
 シミュレーションを行うソフトウェア，シミュレーションを行う計算環境，
-モデルとするロボットは直進動作のシミュレーション実験と同様であるため省略する．
+モデルとするロボットは直進動作のシミュレーション実験と同様であるため説明を省略する．
 歩行条件についても直進動作のシミュレーション実験と同様とするが，
 最小半径を140mmとし，動作は旋回動作とする．また，旋回は超信地旋回的に行う．
 
 \subsubsection{歩行する地形}
 先行研究でシミュレーションが行われた地形は，平地，亀裂のある地形，溝のある地形であるため，
-これらの3つの地形でシミュレーションを行うこととする．
+これらの3つの地形でシミュレーションを行うこととした．
 また，3次元空間での旋回動作を行うために，
-これらの地形の中央に100mm，110mm，120mm，130mmの段差を設けた地形もシミュレーションに用いる．
-さらに，これらの地形の全体を5度，10度，15度傾斜させた地形もシミュレーションに用いる．
+これらの地形の中央に100mm，110mm，120mm，130mmの段差を設けた地形もシミュレーションに用いた．
+さらに，これらの地形の全体を5度，10度，15度傾斜させた地形もシミュレーションに用いた．
 段差を100mmから130mmとした理由は，波東らの研究によって，胴体姿勢を変更しない場合には上ることができる段差の高さの最大値が130mm程度であることがわかったためである．
-同様に，傾斜を5度から15度とした理由も，胴体姿勢を変更しない場合には上ることができる傾斜の角度の最大値が15度程度であることがわかったためである．
+傾斜を5度から15度とした理由も同様である．
+
+\newpage
+
+\begin{figure}[htbp]
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.41\hsize}
+      \begin{center}
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/circle_flat.png}
+      \text{(a) flat terrain}
+      \end{center}
+    \end{minipage} 
+    &
+    \begin{minipage}[t]{0.41\hsize}
+      \begin{center}
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/140mm/130mm.png}
+      \text{(b) up step terrain}
+      \end{center}  
+    \end{minipage}
+    \\
+    \begin{minipage}[t]{0.41\hsize}
+      \centering
+      \includegraphics[width=1.0\linewidth,trim={30 30 30 30}, clip]{figure/chapter4/ditch.png}
+      \centering
+      \text{(c) ditched terrain}
+    \end{minipage} 
+    &    
+    \\
+  \end{tabular}
+  \caption{Simulation Terrain}
+  \label{fig:ch5_simu_terrain_turn} % chktex 24
+\end{figure}
 
 \subsubsection{シミュレーションの手順}
 シミュレーションは次に示す手順で行った．
