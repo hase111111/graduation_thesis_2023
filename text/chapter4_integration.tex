@@ -3,11 +3,12 @@
 4.1章，4.2章のシミュレーション実験によって，
 最小半径を140mmに設定することで，
 脚軌道生成に失敗することなく直進動作，旋回動作を行えることが確認された．
-そこで，これらの直進動作と旋回動作を組み合わせた場合でも，
-最小半径を140mmに設定することで，脚軌道生成に失敗することなく
-歩行することができるかを検証することを目的とする．
+そこで本章では，これらの直進動作と旋回動作を組み合わせた場合でも，
+最小半径を140mmに設定することで，
+脚軌道生成に失敗することなく歩行することができるか確認する．
+これによって，最小半径を140mmに設定することが脚軌道生成の失敗を防ぐために有効であるかを検証することを目的とする．
 
-グラフ探索による自由歩容パターン生成手法を統合したプログラムを用いて，
+本章では新たに実装した，自由歩容パターン生成手法を統合したプログラムを用いて，
 直進動作と旋回動作を組み合わせた歩容パターンを生成し，
 脚軌道生成に失敗することなく歩行できること，
 また指定した通りに動作を切り替えることができることを確認する．
@@ -36,11 +37,13 @@
 130mmの段差がある地形では，始点を$(0,0,0)$，中継点を$(1000,0,130)$，終点を$(0,0,0)$とする．
 15度傾斜した地形では，始点を$(0,0,0)$，中継点を$(1000,0,129.5)$，終点を$(0,0,0)$とする．
 
+\newpage
+
 % chapter4/integration_flat_map.png
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=0.7\linewidth]{figure/chapter4/integration_flat_map.png}
-    \caption{Flat terrain}
+    \includegraphics[width=0.7\linewidth,trim={0 50 0 0}, clip]{figure/chapter4/integration_flat_map.png}
+    \caption{Route of Movement on Flat Terrain}
     \label{fig:ch4_integration_flat_map}  % chktex 24
   \end{center}
 \end{figure}
@@ -49,7 +52,7 @@
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=0.7\linewidth,trim={50 50 50 50}, clip]{figure/chapter4/integration_130mm_map.png}
-    \caption{130mm steps terrain}
+    \caption{Route of Movement on 130mm Steps Terrain}
     \label{fig:ch4_integration_130mm_map}  % chktex 24
   \end{center}
 \end{figure}
@@ -58,7 +61,7 @@
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=0.7\linewidth,trim={50 50 50 50}, clip]{figure/chapter4/integration_15deg_map.png}
-    \caption{15 degrees slope terrain}
+    \caption{Route of Movement on $15^{\circ}$ Slope Terrain}
     \label{fig:ch4_integration_15deg_map}  % chktex 24
   \end{center}
 \end{figure}
@@ -82,12 +85,21 @@
 軸を取っており，脚先座標も支持脚時を青い丸点，遊脚時を赤い丸点，脚軌道生成に失敗した際の脚軌道の中継点を水色の$\times$で示している．
 この図より，脚軌道が可動範囲外を通ることはなかったことがわかる．
 
-また，ロボットが歩行する様子を\figref{fig:ch4_result_integration_view_flat}，\figref{fig:ch4_result_integration_view_130mm}に示す．
+また，\figref{fig:ch4_result_integration_graph}に各地形でのロボットの重心の移動軌跡を示す．
+\figref{fig:ch4_result_integration_graph}では，横軸をワールド座標系におけるy軸，縦軸をx軸としており，単位は$[mm]$である．
+始点から中継点へ移動する際の重心の移動軌跡を赤い線で示し，中継点から終点へ移動する際の重心の移動軌跡を青い線で示しており，
+中継点は緑の点で示している．
+この図より，ロボットは中継点，終点から最大で100mm程度ずれた位置に到達していることがわかる．
+
+
+そして，ロボットが歩行する様子を\figref{fig:ch4_result_integration_view_flat}，\figref{fig:ch4_result_integration_view_130mm}に示す．
 これら図ではロボットの重心の移動軌跡を黄色い線で示している．
 加えてロボットの正面をわかりやすくするために，ロボット胴体の正面に赤い球を表示している．
-それぞれ，動作の様子をタイムラプス的に20枚の写真で示している．
-右上に01から20までの番号が振られており，初めから順番にロボットの動作を確認することができる．
-この図よりロボットが直進動作から旋回動作に動作を切り替えていることがわかる．
+それぞれ，動作の様子をタイムラプス的に撮影した20枚の写真で示している．
+右上に01から20までの番号が振られており，00が始点にロボットが配置された状態である．
+これらの図よりロボットが直進動作と旋回動作の動作を切り替えていることがわかる．
+
+\newpage
 
 % 脚先を示すグラフ
 \begin{figure}[htbp]
@@ -120,6 +132,34 @@
 \end{figure}
 
 \begin{figure}[htbp]
+  \begin{tabular}{ccc}
+    \begin{minipage}[t]{0.3\hsize}
+      \begin{center}
+      \fbox{\includegraphics[width=0.9\linewidth]{figure/chapter4/integration/flat_com.png}}
+      \text{(a) flat}
+      \end{center}
+    \end{minipage} 
+    &
+    \begin{minipage}[t]{0.3\hsize}
+      \begin{center}
+      \fbox{\includegraphics[width=0.9\linewidth]{figure/chapter4/integration/130mm_com.png}}
+      \text{(b) 130mm steps}
+      \end{center}  
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.3\hsize}
+      \centering
+      \fbox{\includegraphics[width=0.9\linewidth]{figure/chapter4/integration/15deg_com.png}}
+      \centering
+      \text{(c) $15^{\circ}$ slope}
+    \end{minipage}  
+    \\
+  \end{tabular}
+  \caption{Path of Center of Mass for Each Terrain}
+  \label{fig:ch4_result_integration_graph} % chktex 24
+\end{figure}
+
+\begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=1.0\linewidth]{figure/chapter4/integration/flat_view.png}
     \caption{View of Operation on a Flat}
@@ -143,6 +183,24 @@
   \end{center}
 \end{figure}
 
-
-
 \subsection{考察}
+結果よりロボットは直進動作と旋回動作を切り替えて歩行することができたため，
+実装した自由歩容パターンを統合したプログラムによって，
+直進動作と旋回動作を組み合わせた歩容パターンを生成することができるといえる．
+
+また\figref{fig:ch4_result_integration}より，脚軌道生成に失敗することなく歩行することができたため，
+最小半径を140mmに設定することが脚軌道生成の失敗を防ぐために有効であるといえる．
+
+\figref{fig:ch4_result_integration_graph}より，
+ロボットは指定した通りに動作を切り替えることができたが，
+指定した経路を追従できなかったことがわかる．
+これは，グラフ探索の評価関数において，
+重心をもっとも大きく移動するノードが高く評価されることにより，
+指定された地点から離れてしまったとしても，
+重心をもっとも大きく移動するノードを選択してしまうためであると考えられる．
+本研究では，脚軌道生成の失敗を防ぐことを目的としているため，
+経路の追従については考慮していなかったが，
+実際にロボットに作業をさせる際には，経路の追従も考慮する必要があるといえるだろう．
+経路を適切に追従させるためには，評価関数を変更することが考えられる．
+評価関数において，中継点への到達を重視することで，
+経路を追従するような歩容パターンを生成することができると考えられる．
