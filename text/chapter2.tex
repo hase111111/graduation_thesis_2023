@@ -56,11 +56,11 @@
 \begin{figure}[htbp]
   \subfigure[Undirected Graph]{%
   \label{fig:undirected_graph}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/undirected_graph.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/undirected_graph.png}}
   \hspace{0.02\columnwidth}
   \subfigure[Directed Graph]{%
   \label{fig:directed_graph}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/directed_graph.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/directed_graph.png}}
   \caption{Examples of simple graphs}
   \label{fig:example_simple_graphs}  % chktex 24
 \end{figure}
@@ -180,10 +180,10 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 階層とは脚位置の組み合わせ$K$が等しく，かつ，遊脚の組み合わせ$V$が異なるノードの集合と定義され，
 遊脚の組み合わせが36通り存在することから，同じ階層内のノードは36個存在する．
 脚の上下運動を実現したい場合は，遊脚の組み合わせ$V$が異なるノードを探索する必要があるため，
-図\ref{fig:hierarchy2}のように階層内のノード36個のみを探索すればよい．
+\figref{fig:hierarchy2}に示したように同じ階層内のノードのみを探索すればよい．
 
 また，脚の水平運動を実現したい場合は，脚位置の組み合わせ$K$が異なるノードを探索する必要があるため，
-図\ref{fig:hierarchy}のように脚の状態$L$が等しくなるノードのみを探索すればよい．
+\figref{fig:hierarchy}に示したように，別の階層の脚の状態$L$が等しくなるノードのみを探索すればよい．
 脚の状態$L$が等しくなるノードは，最大で3脚が遊脚しているときの$7^3 = 343$個であるため，
 十分に実時間内の計算が可能である．
 
@@ -227,14 +227,14 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 最大半径を以下の手順で求める．
 \begin{enumerate}
   \item 脚の付け根と脚先が同じ高さになるように脚先を上げる．
-  \item 図\ref{fig:leg_range_a}のように水平方向に脚先を$1 [mm]$ずつ伸ばす．
+  \item \figref{fig:leg_range_a}のように水平方向に脚先を1mmずつ伸ばす．
   \item 脚先を伸ばすことができなくなった場合，\\
-        図\ref{fig:leg_range_b}のように脚先と脚の付け根の高さ方向の距離の差をインデックスとして，\\
+        \figref{fig:leg_range_b}のように脚先と脚の付け根の高さ方向の距離の差をインデックスとして，\\
         脚先と第1関節の水平方向の距離を最大半径として記録する．
-  \item 脚先を$1 [mm]$下げて（2）（3）の処理を繰り返す．脚先を下げることができなくなった場合，処理を終了する．
+  \item 脚先を1mm下げて（2）（3）の処理を繰り返す．脚先を下げることができなくなった場合，処理を終了する．
 \end{enumerate}
 次に最小半径をロボットの脚長などのパラメータから決定する．
-先行研究では実験で用いたロボットにあわせ，$120 [mm]$とした．
+先行研究では実験で用いたロボットにあわせ，120mmとした．
 そして，扇形の中心角を隣の脚と干渉しないように決定する．
 こうして求められる近似された脚の可動範囲のイメージを\figref{fig:approximated_range_of_motion}に示す．
 \figref{fig:approximated_range_of_motion}では右中央の脚の近似された脚の可動範囲のみを示しており，
@@ -256,11 +256,11 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 \begin{figure}[htbp]
   \subfigure[Horizontal Movement of the Leg Tips]{%
   \label{fig:leg_range_a}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/leg_range.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/leg_range.png}}
   \hspace{0.04\columnwidth}
   \subfigure[Determination of the Maximum Radius]{%
   \label{fig:leg_range_b}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/max_leg_range.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/max_leg_range.png}}
   \caption{Caluculation of the Maximum Radius}
   \label{fig:leg_range}  % chktex 24
 \end{figure}
@@ -268,11 +268,11 @@ $L_{ij} = \{0,1,0,1,0,1\}$と表すことができる．
 \begin{figure}[htbp]
   \subfigure[Top View]{%
   \label{fig:side_view}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/approximated_range_motion_top.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/approximated_range_motion_top.png}}
   \hspace{0.04\columnwidth}
   \subfigure[Side View]{%
   \label{fig:top_view}
-  \includegraphics[width=0.48\columnwidth]{figure/chapter2/approximated_range_motion_back.png}}
+  \includegraphics[width=0.45\columnwidth]{figure/chapter2/approximated_range_motion_back.png}}
   \caption{Approximated Range of Motion}
   \label{fig:approximated_range_of_motion}  % chktex 24
 \end{figure}
@@ -313,7 +313,7 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
   \theta_f &= \arctan \frac{z_{end}}{\sqrt{x_{end}^2 + y_{end}^2} - L_c} + 
   \arccos \frac{L_t^2 + L_f^2 - x_{end}^2 - y_{end}^2 - z_{end}^2}{2 \cdot L_t \cdot L_f} \\
   P_t &= \{(L_c + L_t \cos \theta_f)\cos \theta_c ,
-                  L_t \cos \theta_f \sin \theta_c , 
+           (L_c + L_t \cos \theta_f) \sin \theta_c , 
                   L_t \sin \theta_f\}  \\
   \theta_t &= \arctan \frac{z_{end} - z_t}{\sqrt{x_{end}^2 + y_{end}^2} - 
               \sqrt{x_t^2 + y_t^2}} - \theta_f \label{eq:theta_t} 
@@ -333,13 +333,13 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 % 脚の座標系
 \begin{figure}[h]
   \begin{tabular}{cc}
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.45\textwidth}
       \centering
       \includegraphics[width=1.0\linewidth]{figure/chapter2/coordinate_axis.png}
       \caption{Leg Coordinate Axis}
       \label{fig:leg_coordinate_axis} % chktex 24
     \end{minipage}
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.45\textwidth}
       \centering
       \includegraphics[width=1.0\linewidth]{figure/chapter2/link_joint.png}
       \caption{Joint and Link Name} 
@@ -354,7 +354,7 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 	\label{tab:link_len_phantom_x}  % chktex 24
 	\begin{center}
    	\begin{tabular}{|c||c|} \hline  % chktex 44
-      Link Name & $[mm]$ \\ \hline  % chktex 44
+      Link Name & Length $[mm]$ \\ \hline  % chktex 44
       Coxa Link & 52  \\ \hline  % chktex 44
       Femur Link & 66  \\ \hline  % chktex 44
       Tibia Link & 130  \\ \hline  % chktex 44
@@ -382,8 +382,8 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 このような不完全な脚軌道を生成すると，障害物に脚が引っかかってしまい歩行を継続できなくなる可能性がある．
 以上から，この領域が脚軌道生成の失敗の原因であると予想できる．
 
-\figref{fig:simu_leg_range}は遊脚高さを$20 [mm]$，最小半径を$120 [mm]$とした時のものであるが，
-遊脚高さを$25 [mm]$，最小半径を$130 [mm]$とした時の脚の可動範囲を\figref{fig:act_leg_range}に示す．
+\figref{fig:simu_leg_range}は遊脚高さを20mm，最小半径を120mmとした時のものであるが，
+遊脚高さを25mm，最小半径を130mmとした時の脚の可動範囲を\figref{fig:act_leg_range}に示す．
 \figref{fig:simu_leg_range}の条件は波東らの研究\cite{Hato_Graph_search}のシミュレーション実験時の条件であり，
 \figref{fig:act_leg_range}の条件は実機試験時の条件である．
 \figref{fig:act_leg_range}では，$100 < x < 150$，$-50 < z < -20$の範囲の，
@@ -395,16 +395,16 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 
 \begin{figure}[h]
   \begin{tabular}{cc}
-      \begin{minipage}{0.5\textwidth}
+      \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=1.0\linewidth]{figure/chapter2/leg_range_120_20.png}
-          \caption{Approximated Range of Motion in Simulation \newline}
+          \caption{Approximated \newline Range of Motion in Simulation \newline}
           \label{fig:simu_leg_range} % chktex 24
       \end{minipage}
-      \begin{minipage}{0.5\textwidth}
+      \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=1.0\linewidth]{figure/chapter2/leg_range_130_25.png}
-          \caption{Approximated Range of Motion in Experimental Equipment}
+          \caption{Approximated \newline Range of Motion in Experimental Equipment}
           \label{fig:act_leg_range} % chktex 24
       \end{minipage}
   \end{tabular}
@@ -423,6 +423,8 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 波東らは段差のある地形と斜面のある地形でシミュレーション，および実機による直進歩行動作の実験を行った．
 また，実機試験時にはシミュレーション実験と歩行時の条件を変更していた．
 本シミュレーションでは，波東らの研究のシミュレーションと実機試験それぞれの条件で歩行シミュレーションを行う．
+以降はわかりやすさのため，波東らの研究のシミュレーション時に用いられた条件を，最小半径を120mmにした条件とし，
+実機試験時に用いられた条件を，最小半径を130mmにした条件とする．
 
 \subsection{シミュレーションの条件}
 本研究室ではロボットの動作のシミュレーションを行うためのシミュレーターソフトウェアを自作し，
@@ -447,38 +449,39 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 \subsubsection{歩行する地形}
 歩行する地形を\figref{fig:terrain}に示す．
 地形は5種類あり，それぞれ平地，上り段差，下り段差，上り斜面，下り斜面である．
-実機試験の条件に合わせ，段差は上り，下りともに高さが$100 [mm]$とし，
-斜面は上り，下りともに角度が$15 [\deg]$とした．
+実機試験の条件に合わせ，段差は上り，下りともに高さが100mmとし，
+斜面は上り，下りともに角度が$15^{\circ}$とした．
 
 \subsubsection{歩行する時の条件}
-シミュレーション時の歩行条件は以下の通りである．
+最小半径を120mmとする条件は以下の通りである．
 \begin{itemize}
   \item 胴体姿勢は常に水平である．
-  \item 最小半径を$120 [mm]$とする．
-  \item 重心から見た遊脚高さを$-20 [mm]$とする．
-  \item 胴体を地形から最小$30 [mm]$離す．
-  \item 常に静的安定余裕は$10 [mm]$以上を保つ．
+  \item 最小半径を120mmとする．
+  \item 重心から見た遊脚高さを-20mmとする．
+  \item 胴体を地形から最小30mm離す．
+  \item 常に静的安定余裕は10mm以上を保つ．
 \end{itemize}
 
-実機実験時の歩行条件は以下の通りである．
+最小半径を130mmとする条件は以下の通りである．
 \begin{itemize}
   \item 胴体姿勢は常に水平である．
-  \item 最小半径を$130 [mm]$とする．
-  \item 重心から見た遊脚高さを$-25 [mm]$とする．
-  \item 胴体を地形から最小$50 [mm]$離す．
-  \item 常に静的安定余裕は$15 [mm]$以上を保つ．
+  \item 最小半径を130mmとする．
+  \item 重心から見た遊脚高さを-25mmとする．
+  \item 胴体を地形から最小50mm離す．
+  \item 常に静的安定余裕は15mm以上を保つ．
 \end{itemize}
 
 以上の2つの条件で歩行シミュレーションを行う．
 
 \subsubsection{シミュレーションの手順}
-これらの地形で水平方向に$1200 [mm]$直進させ，
+これらの地形で水平方向に1200mm直進させ，
 \figref{fig:terrain}のロボットの初期位置をランダムに変化させて計5回ずつ歩行させる．
 
 このシミュレーションでは脚軌道生成に失敗した場合も，
 仮に脚軌道生成に成功した場合と同様に歩行を継続させ，
 脚軌道生成に失敗した場合の脚先の位置と回数を記録する．
 これを各地形，各条件で行う．
+\\
 
 % 計算環境の表
 \begin{table}[htbp]
@@ -551,8 +554,8 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 \newpage
 
 \subsection{シミュレーションの結果}
-シミュレーション時の条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_simulation}に示す．
-また，実機実験時の条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_experimental}に示す．
+最小半径を120mmとする条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_simulation}に示す．
+また，最小半径を130mmとする条件で歩行させたときの脚軌道生成失敗の回数を\tableref{tab:failure_count_experimental}に示す．
 \tableref{tab:failure_count_simulation}では脚軌道生成の失敗率は多くの地形で$20 [\%]$を超えており，
 動作を継続させることが難しいとわかる．
 とくに脚の接地点が脚の可動範囲外になってしまうことが多く，
@@ -570,6 +573,7 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
   \caption{Failure Count of Simulation}
   \label{tab:failure_count_simulation}  % chktex 24
   \centering
+  \small
   \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline  % chktex 44
     \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数} & \multirow{3}{*}{失敗率 $[\%]$} \\ \cline{3-7}  % chktex 44
      & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} & \\ \cline{4-6}  % chktex 44
@@ -586,6 +590,7 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
   \caption{Failure Count of Experimental Equipment}
   \label{tab:failure_count_experimental}  % chktex 24
   \centering
+  \small
   \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline  % chktex 44
     \multirow{3}{*}{地形} & \multirow{3}{*}{グラフ探索} & \multicolumn{5}{c|}{失敗の回数}  & \multirow{3}{*}{失敗率 $[\%]$} \\ \cline{3-7}  % chktex 44
      & & \multirow{2}{*}{脚接地点が} & \multicolumn{3}{c|}{脚軌道が可動範囲外を通る} & \multirow{2}{*}{総失敗} & \\ \cline{4-6}  % chktex 44
@@ -600,9 +605,9 @@ $P_c$，$P_f$，$P_t$，$\theta_c$，$\theta_f$，$\theta_t$を
 
 \newpage
 
-シミュレーション時の条件で歩行させたとき，
+最小半径を120mmとする条件で歩行させたとき，
 脚軌道生成に失敗した脚先の位置を\figref{fig:result_of_simulation}に示す．
-また，実機実験時の条件で歩行させたとき，
+また，最小半径を130mmとする条件で歩行させたとき，
 脚軌道生成に失敗した脚先の位置を\figref{fig:result_of_experimental}に示す．
 どちらの図も\figref{fig:simu_leg_range}と\figref{fig:act_leg_range}の
 $50 < x < 250$，$-200 < z < 0$の範囲を拡大したものである．
@@ -615,16 +620,16 @@ $50 < x < 250$，$-200 < z < 0$の範囲を拡大したものである．
 
 \begin{figure}[h]
   \begin{tabular}{cc}
-      \begin{minipage}{0.5\textwidth}
+      \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=1.0\linewidth]{figure/chapter2/result_simu.png}
-          \caption{Result of Simulation}
+          \caption{Result of 120mm Radius Condition}
           \label{fig:result_of_simulation} % chktex 24
       \end{minipage}
-      \begin{minipage}{0.5\textwidth}
+      \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=1.0\linewidth]{figure/chapter2/result_exp.png}
-          \caption{Result of Experimental Equipment}
+          \caption{Result of 130mm Radius Condition}
           \label{fig:result_of_experimental} % chktex 24
       \end{minipage}
   \end{tabular}
@@ -635,7 +640,7 @@ $50 < x < 250$，$-200 < z < 0$の範囲を拡大したものである．
 実際の脚の可動範囲と近似された脚の可動範囲が異なる領域を通っている．
 よって脚軌道生成に失敗する原因は，2.1.3章で予想した通り，
 実際の脚の可動範囲と近似された脚の可動範囲が異なる領域によるものであるといえる．
-この領域は最小半径を$140 [mm]$まで増やすことで，なくすことが可能であるため，
+この領域は最小半径を140mmまで増やすことで，なくすことが可能であるため，
 脚軌道生成の失敗を防ぐためには最小半径の再設定が必要であると考えられる．
 
 % 再評価手法の提案の章
