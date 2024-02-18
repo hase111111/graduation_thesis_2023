@@ -25,38 +25,38 @@
 \usepackage{multirow}
 \usepackage{fancyhdr}
 \usepackage{subfigure}
-\usepackage{bm} %ベクトル表示
+\usepackage{bm}  % ベクトル表示
 \usepackage{slashbox}  % https://qiita.com/ta_b0_/items/2619d5927492edbb5b03
 \usepackage{listings, jlisting}
 \usepackage{url}
 \usepackage[final,dvipdfmx]{pdfpages}
 \usepackage{pgf-umlcd}
 
-%プログラム挿入の設定
+% プログラム挿入の設定
 \lstset{
-	%プログラム言語(複数の言語に対応，C,C++も可)
+	% プログラム言語(複数の言語に対応，C,C++も可)
  	language = C++,
- 	%背景色と透過度
+ 	% 背景色と透過度
  	backgroundcolor={\color[gray]{.90}},
- 	%枠外に行った時の自動改行
+ 	% 枠外に行った時の自動改行
  	breaklines = true,
- 	%自動開業後のインデント量(デフォルトでは20[pt])	
+ 	% 自動開業後のインデント量(デフォルトでは20[pt])	
  	breakindent = 10pt,
- 	%標準の書体
+ 	% 標準の書体
  	basicstyle = \ttfamily\scriptsize,
  	%basicstyle = {\small}
- 	%コメントの書体
+ 	% コメントの書体
  	commentstyle = {\bfseries \color[cmyk]{1,0.4,1,0}},
- 	%関数名等の色の設定
+ 	% 関数名等の色の設定
  	classoffset = 0,
- 	%キーワード(int, ifなど)の書体
+ 	% キーワード(int, ifなど)の書体
  	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},
- 	%""で囲まれたなどの"文字"の書体
+ 	% ""で囲まれたなどの"文字"の書体
  	stringstyle = {\ttfamily \color[rgb]{0,0,1}},
- 	%枠 "t"は上に線を記載, "T"は上に二重線を記載
-	%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	% 枠 "t"は上に線を記載, "T"は上に二重線を記載
+	% 他オプション：leftline，topline，bottomline，lines，single，shadowbox
  	frame = TBrl,
- 	%frameまでの間隔(行番号とプログラムの間)
+ 	% frameまでの間隔(行番号とプログラムの間)
  	framesep = 5pt,
  	%行番号の位置
  	numbers = left,
@@ -91,7 +91,7 @@
 	#1%
 }%
 
-%再定義コマンド
+% 再定義コマンド
 \renewcommand{\figurename}{Fig.~}
 \renewcommand{\tablename}{Table.~}
 \renewcommand{\labelitemi}{・}
@@ -99,8 +99,8 @@
 
 \renewcommand{\eqref}[1]{式 (\ref{#1})}
 
-\renewcommand{\subfigtopskip}{0mm}%図と図の間
-\renewcommand{\subfigcapskip}{0mm}%図と副題の間
+\renewcommand{\subfigtopskip}{0mm}  % 図と図の間
+\renewcommand{\subfigcapskip}{0mm}  % 図と副題の間
 
 \renewcommand{\umltextcolor}{black}
 \renewcommand{\umlfillcolor}{white}
@@ -120,7 +120,7 @@
 
 \begin{document}
 
-    %タイトル ※修士は題目_修士、学士は題目_学士に変更すること。編集するファイルもそれぞれ対応するファイルを編集する。
+    % タイトル ※修士は題目_修士、学士は題目_学士に変更すること。編集するファイルもそれぞれ対応するファイルを編集する。
     \input{text/title.tex}
 
     \frontmatter
@@ -128,17 +128,17 @@
     \listoffigures
     \listoftables
     \mainmatter{} 
-    %!!重要!!
-    %各章は奇数ページから開始するように調整すること
-    %つまり各章は偶数ページで終わるように、改ページ等を使用して調整する。
-  	\input{text/chapter1.tex} % 第1章
-    \input{text/chapter2.tex} % 第2章
-    \input{text/chapter3.tex} % 第3章
-    \input{text/chapter4.tex} % 第4章
-    \input{text/chapter5.tex} % 第5章
-		\input{text/chapter6.tex} % 第6章
-    %\input{text/appendix.tex} %付録（あれば）
-    \backmatter{}              %章番号を付けない
-    \input{text/thanks.tex}    %謝辞
-    \input{text/reference.tex} %参考文献
+    % !!重要!!
+    % 各章は奇数ページから開始するように調整すること
+    % つまり各章は偶数ページで終わるように、改ページ等を使用して調整する。
+  	%\input{text/chapter1.tex} % 第1章
+    %\input{text/chapter2.tex} % 第2章
+    %\input{text/chapter3.tex} % 第3章
+    %\input{text/chapter4.tex} % 第4章
+    %\input{text/chapter5.tex} % 第5章
+		%\input{text/chapter6.tex} % 第6章
+    \input{text/appendix.tex}   % 付録
+    \backmatter{}               % 章番号を付けない
+    \input{text/thanks.tex}     % 謝辞
+    \input{text/reference.tex}  % 参考文献
 \end{document}
