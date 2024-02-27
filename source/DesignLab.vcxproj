@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="application_setting_record_validator.h" />
+    <ClInclude Include="approximated_motion_range_render.h" />
+    <ClInclude Include="asyncable_data_test.h" />
+    <ClInclude Include="dxlib_gui_robot_control.h" />
+    <ClInclude Include="graphic_main_robot_control.h" />
+    <ClInclude Include="graph_searcher_turn.h" />
+    <ClInclude Include="graph_search_evaluator.h" />
+    <ClInclude Include="graph_search_evaluator_test.h" />
+    <ClInclude Include="implicit_metafunction_for_toml11.h" />
+    <ClInclude Include="interpolate_validator.h" />
+    <ClInclude Include="math_line_segment2_test.h" />
+    <ClInclude Include="math_rotation_matrix_test.h" />
+    <ClInclude Include="math_vector2_test.h" />
+    <ClInclude Include="node_creator_builder_body_rot.h" />
+    <ClInclude Include="node_creator_leg_up_down_radius.h" />
+    <ClInclude Include="serial_communication_thread.h" />
+    <ClInclude Include="string_util_test.h" />
+    <ClInclude Include="divided_map_state_test.h" />
+    <ClInclude Include="dxlib_3d_renderer_group.h" />
+    <ClInclude Include="dxlib_gui_camera_parameter_displayer.h" />
+    <ClInclude Include="dxlib_gui_terminal.h" />
+    <ClInclude Include="font_loader.h" />
+    <ClInclude Include="gait_pattern_generator_switch_move.h" />
+    <ClInclude Include="gait_pattern_generator_thread.h" />
+    <ClInclude Include="gait_pattern_graph_tree.h" />
+    <ClInclude Include="gait_pattern_graph_tree_test.h" />
+    <ClInclude Include="graph_searcher_spot_turn.h" />
+    <ClInclude Include="dxlib_gui_updater.h" />
+    <ClInclude Include="hexapod_renderer_builder.h" />
+    <ClInclude Include="interface_dxlib_clickable.h" />
+    <ClInclude Include="interface_dxlib_draggable.h" />
+    <ClInclude Include="interface_dxlib_gui.h" />
+    <ClInclude Include="interface_dxlib_node_setter.h" />
+    <ClInclude Include="interface_dxlib_3d_renderer.h" />
+    <ClInclude Include="interface_dxlib_wheel_handler.h" />
+    <ClInclude Include="interface_simulation_end_checker.h" />
+    <ClInclude Include="interface_robot_operator.h" />
+    <ClInclude Include="interface_toml_data_validator.h" />
+    <ClInclude Include="map_creator_by_csv.h" />
+    <ClInclude Include="map_creator_factory.h" />
+    <ClInclude Include="map_file_exporter.h" />
+    <ClInclude Include="map_file_importer.h" />
+    <ClInclude Include="map_state_test.h" />
+    <ClInclude Include="math_const.h" />
+    <ClInclude Include="math_util_test.h" />
+    <ClInclude Include="math_vector3_test.h" />
+    <ClInclude Include="node_creator_body_rot.h" />
+    <ClInclude Include="array_util.h" />
+    <ClInclude Include="asyncable_data.h" />
+    <ClInclude Include="boot_mode_selector.h" />
+    <ClInclude Include="cassert_define.h" />
+    <ClInclude Include="average_calculator.h" />
+    <ClInclude Include="math_rotation_matrix.h" />
+    <ClInclude Include="math_rot_converter.h" />
+    <ClInclude Include="string_util.h" />
+    <ClInclude Include="divided_map_state.h" />
+    <ClInclude Include="discrete_com_pos.h" />
+    <ClInclude Include="discrete_leg_pos.h" />
+    <ClInclude Include="boot_mode.h" />
+    <ClInclude Include="node_creator_builder_turn_spot.h" />
+    <ClInclude Include="dxlib_node_setter_group.h" />
+    <ClInclude Include="node_creator_com_move_straight.h" />
+    <ClInclude Include="node_creator_leg_up_down_2d.h" />
+    <ClInclude Include="phantomx_mk2_parameter_record.h" />
+    <ClInclude Include="robot_operator_for_path.h" />
+    <ClInclude Include="simple_button.h" />
+    <ClInclude Include="camera_dragger.h" />
+    <ClInclude Include="dxlib_gui_camera.h" />
+    <ClInclude Include="com_candidate_polygon_maker.h" />
+    <ClInclude Include="node_creator_com_move.h" />
+    <ClInclude Include="interface_hexapod_coordinate_converter.h" />
+    <ClInclude Include="interface_hexapod_joint_calculator.h" />
+    <ClInclude Include="interface_hexapod_state_presenter.h" />
+    <ClInclude Include="interface_hexapod_posture_validator.h" />
+    <ClInclude Include="simulation_end_checker_by_position.h" />
+    <ClInclude Include="simulation_end_checker_by_posture.h" />
+    <ClInclude Include="simulation_end_checker_factory.h" />
+    <ClInclude Include="simulation_map_parameter.h" />
+    <ClInclude Include="node_creator_builder_turn.h" />
+    <ClInclude Include="node_initializer.h" />
+    <ClInclude Include="com_selector.h" />
+    <ClInclude Include="node_creator_com_up_down.h" />
+    <ClInclude Include="math_quaternion.h" />
+    <ClInclude Include="dxlib_gui_display_node_switcher.h" />
+    <ClInclude Include="display_quality.h" />
+    <ClInclude Include="file_tree.h" />
+    <ClInclude Include="graphic_main_basic.h" />
+    <ClInclude Include="graphic_main_graph_viewer.h" />
+    <ClInclude Include="graphic_main_display_model.h" />
+    <ClInclude Include="graph_search_const.h" />
+    <ClInclude Include="graph_searcher_straight_move.h" />
+    <ClInclude Include="math_euler.h" />
+    <ClInclude Include="graph_tree_creator.h" />
+    <ClInclude Include="interface_map_creator.h" />
+    <ClInclude Include="interface_node_creator_builder.h" />
+    <ClInclude Include="interface_system_main.h" />
+    <ClInclude Include="interpolated_node_creator.h" />
+    <ClInclude Include="model_loader.h" />
+    <ClInclude Include="movement_locus_renderer.h" />
+    <ClInclude Include="node_creator_builder_straight_move.h" />
+    <ClInclude Include="dxlib_gui_node_displayer.h" />
+    <ClInclude Include="output_detail.h" />
+    <ClInclude Include="gait_pattern_generator_basic.h" />
+    <ClInclude Include="graph_search_result_record.h" />
+    <ClInclude Include="graph_viewer_gui_controller.h" />
+    <ClInclude Include="hexapod_next_move.h" />
+    <ClInclude Include="gait_pattern_generator_revaluation.h" />
+    <ClInclude Include="phantomx_mk2_const.h" />
+    <ClInclude Include="phantomx_mk2_renderer_model.h" />
+    <ClInclude Include="phantomx_renderer_simple.h" />
+    <ClInclude Include="interface_gait_pattern_generator.h" />
+    <ClInclude Include="interface_graph_searcher.h" />
+    <ClInclude Include="interface_graphic_main.h" />
+    <ClInclude Include="result_file_importer.h" />
+    <ClInclude Include="com_type.h" />
+    <ClInclude Include="cmdio_util.h" />
+    <ClInclude Include="dxlib_util.h" />
+    <ClInclude Include="fps_controller.h" />
+    <ClInclude Include="dxlib_camera.h" />
+    <ClInclude Include="graphic_data_broker.h" />
+    <ClInclude Include="graphic_system.h" />
+    <ClInclude Include="graphic_const.h" />
+    <ClInclude Include="hexapod_const.h" />
+    <ClInclude Include="interface_node_creator.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="node_creator_leg_hierarchy.h" />
+    <ClInclude Include="leg_state.h" />
+    <ClInclude Include="node_creator_leg_up_down.h" />
+    <ClInclude Include="map_renderer.h" />
+    <ClInclude Include="map_state.h" />
+    <ClInclude Include="mouse.h" />
+    <ClInclude Include="math_line_segment2.h" />
+    <ClInclude Include="math_util.h" />
+    <ClInclude Include="math_polygon2.h" />
+    <ClInclude Include="simulation_end_checker_by_goal_tape.h" />
+    <ClInclude Include="simulation_map_parameter_validator.h" />
+    <ClInclude Include="simulation_map_parameter_validator_test.h" />
+    <ClInclude Include="simulation_setting_record.h" />
+    <ClInclude Include="stopwatch.h" />
+    <ClInclude Include="math_vector2.h" />
+    <ClInclude Include="dead_lock_checker.h" />
+    <ClInclude Include="phantomx_mk2.h" />
+    <ClInclude Include="result_file_exporter.h" />
+    <ClInclude Include="system_main_result_viewer.h" />
+    <ClInclude Include="robot_ground_point_renderer.h" />
+    <ClInclude Include="simulation_result_record.h" />
+    <ClInclude Include="application_setting_record.h" />
+    <ClInclude Include="singleton.h" />
+    <ClInclude Include="stability_margin_renderer.h" />
+    <ClInclude Include="system_main_robot_control.h" />
+    <ClInclude Include="system_main_simulation.h" />
+    <ClInclude Include="system_main_graph_viewer.h" />
+    <ClInclude Include="robot_operation.h" />
+    <ClInclude Include="robot_state_node.h" />
+    <ClInclude Include="map_creator_for_simulation.h" />
+    <ClInclude Include="math_vector3.h" />
+    <ClInclude Include="robot_operator_factory.h" />
+    <ClInclude Include="robot_operator_for_gpg.h" />
+    <ClInclude Include="robot_operator_fixed.h" />
+    <ClInclude Include="test_main.h" />
+    <ClInclude Include="toml11_define.h" />
+    <ClInclude Include="toml_data_validator_always_true.h" />
+    <ClInclude Include="toml_file_exporter.h" />
+    <ClInclude Include="toml_file_importer.h" />
+    <ClInclude Include="toml_directory_exporter.h" />
+    <ClInclude Include="toml_serialize_macro.h" />
+    <ClInclude Include="world_grid_renderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="application_setting_record_validator.cpp" />
+    <ClCompile Include="approximated_motion_range_render.cpp" />
+    <ClCompile Include="dxlib_3d_renderer_group.cpp" />
+    <ClCompile Include="dxlib_gui_camera_parameter_displayer.cpp" />
+    <ClCompile Include="dxlib_gui_robot_control.cpp" />
+    <ClCompile Include="dxlib_gui_terminal.cpp" />
+    <ClCompile Include="font_loader.cpp" />
+    <ClCompile Include="gait_pattern_generator_switch_move.cpp" />
+    <ClCompile Include="gait_pattern_generator_thread.cpp" />
+    <ClCompile Include="gait_pattern_graph_tree.cpp" />
+    <ClCompile Include="graphic_main_robot_control.cpp" />
+    <ClCompile Include="graph_searcher_spot_turn.cpp" />
+    <ClCompile Include="dxlib_gui_updater.cpp" />
+    <ClCompile Include="graph_searcher_turn.cpp" />
+    <ClCompile Include="graph_search_evaluator.cpp" />
+    <ClCompile Include="hexapod_renderer_builder.cpp" />
+    <ClCompile Include="interpolate_validator.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="map_creator_by_csv.cpp" />
+    <ClCompile Include="map_creator_factory.cpp" />
+    <ClCompile Include="map_file_exporter.cpp" />
+    <ClCompile Include="map_file_importer.cpp" />
+    <ClCompile Include="node_creator_body_rot.cpp" />
+    <ClCompile Include="boot_mode_selector.cpp" />
+    <ClCompile Include="node_creator_builder_body_rot.cpp" />
+    <ClCompile Include="node_creator_builder_turn_spot.cpp" />
+    <ClCompile Include="dxlib_node_setter_group.cpp" />
+    <ClCompile Include="node_creator_com_move_straight.cpp" />
+    <ClCompile Include="node_creator_leg_up_down_2d.cpp" />
+    <ClCompile Include="node_creator_leg_up_down_radius.cpp" />
+    <ClCompile Include="robot_operator_for_path.cpp" />
+    <ClCompile Include="serial_communication_thread.cpp" />
+    <ClCompile Include="simple_button.cpp" />
+    <ClCompile Include="camera_dragger.cpp" />
+    <ClCompile Include="dxlib_gui_camera.cpp" />
+    <ClCompile Include="com_candidate_polygon_maker.cpp" />
+    <ClCompile Include="node_creator_com_move.cpp" />
+    <ClCompile Include="math_rot_converter.cpp" />
+    <ClCompile Include="string_util.cpp" />
+    <ClCompile Include="divided_map_state.cpp" />
+    <ClCompile Include="node_creator_builder_turn.cpp" />
+    <ClCompile Include="node_initializer.cpp" />
+    <ClCompile Include="com_selector.cpp" />
+    <ClCompile Include="node_creator_com_up_down.cpp" />
+    <ClCompile Include="math_quaternion.cpp" />
+    <ClCompile Include="math_rotation_matrix.cpp" />
+    <ClCompile Include="math_vector2.cpp" />
+    <ClCompile Include="dxlib_gui_display_node_switcher.cpp" />
+    <ClCompile Include="file_tree.cpp" />
+    <ClCompile Include="graphic_main_basic.cpp" />
+    <ClCompile Include="graphic_main_graph_viewer.cpp" />
+    <ClCompile Include="graphic_main_display_model.cpp" />
+    <ClCompile Include="graph_searcher_straight_move.cpp" />
+    <ClCompile Include="math_euler.cpp" />
+    <ClCompile Include="graph_search_const.cpp" />
+    <ClCompile Include="graph_search_result_record.cpp" />
+    <ClCompile Include="graph_tree_creator.cpp" />
+    <ClCompile Include="interpolated_node_creator.cpp" />
+    <ClCompile Include="model_loader.cpp" />
+    <ClCompile Include="movement_locus_renderer.cpp" />
+    <ClCompile Include="node_creator_builder_straight_move.cpp" />
+    <ClCompile Include="gait_pattern_generator_revaluation.cpp" />
+    <ClCompile Include="phantomx_mk2_renderer_model.cpp" />
+    <ClCompile Include="result_file_importer.cpp" />
+    <ClCompile Include="simulation_end_checker_by_goal_tape.cpp" />
+    <ClCompile Include="simulation_end_checker_by_position.cpp" />
+    <ClCompile Include="simulation_end_checker_by_posture.cpp" />
+    <ClCompile Include="simulation_end_checker_factory.cpp" />
+    <ClCompile Include="simulation_map_parameter_validator.cpp" />
+    <ClCompile Include="stopwatch.cpp" />
+    <ClCompile Include="dxlib_gui_node_displayer.cpp" />
+    <ClCompile Include="gait_pattern_generator_basic.cpp" />
+    <ClCompile Include="graph_viewer_gui_controller.cpp" />
+    <ClCompile Include="phantomx_renderer_simple.cpp" />
+    <ClCompile Include="com_type.cpp" />
+    <ClCompile Include="cmdio_util.cpp" />
+    <ClCompile Include="dxlib_util.cpp" />
+    <ClCompile Include="fps_controller.cpp" />
+    <ClCompile Include="dxlib_camera.cpp" />
+    <ClCompile Include="graphic_const.cpp" />
+    <ClCompile Include="graphic_system.cpp" />
+    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="node_creator_leg_hierarchy.cpp" />
+    <ClCompile Include="leg_state.cpp" />
+    <ClCompile Include="node_creator_leg_up_down.cpp" />
+    <ClCompile Include="math_line_segment2.cpp" />
+    <ClCompile Include="math_polygon2.cpp" />
+    <ClCompile Include="robot_state_node.cpp" />
+    <ClCompile Include="map_creator_for_simulation.cpp" />
+    <ClCompile Include="map_renderer.cpp" />
+    <ClCompile Include="mouse.cpp" />
+    <ClCompile Include="dead_lock_checker.cpp" />
+    <ClCompile Include="phantomx_mk2.cpp" />
+    <ClCompile Include="result_file_exporter.cpp" />
+    <ClCompile Include="system_main_result_viewer.cpp" />
+    <ClCompile Include="robot_ground_point_renderer.cpp" />
+    <ClCompile Include="simulation_result_record.cpp" />
+    <ClCompile Include="stability_margin_renderer.cpp" />
+    <ClCompile Include="system_main_robot_control.cpp" />
+    <ClCompile Include="system_main_simulation.cpp" />
+    <ClCompile Include="system_main_graph_viewer.cpp" />
+    <ClCompile Include="math_vector3.cpp" />
+    <ClCompile Include="robot_operator_factory.cpp" />
+    <ClCompile Include="robot_operator_for_gpg.cpp" />
+    <ClCompile Include="robot_operator_fixed.cpp" />
+    <ClCompile Include="toml_directory_exporter.cpp" />
+    <ClCompile Include="toml_serialize_macro.cpp" />
+    <ClCompile Include="world_grid_renderer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{3d1f0fac-f380-4f2c-af14-0e794d350591}</ProjectGuid>
+    <RootNamespace>DesignLab</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>HexapodRobotSimulation</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>HexapodRobotSimulation</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>HexapodRobotSimulation</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>HexapodRobotSimulation</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\include\boost-1_82;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <DisableSpecificWarnings>4828;4514;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\lib;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalLibraryDirectories>
+      <HeapReserveSize>2000000000</HeapReserveSize>
+      <HeapCommitSize>400000</HeapCommitSize>
+      <StackReserveSize>200000000</StackReserveSize>
+      <StackCommitSize>40000</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OutputFile>$(OutDir)HexapodRobotSimulation$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\include\boost-1_82;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <DisableSpecificWarnings>4828;4514;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\lib;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalLibraryDirectories>
+      <HeapReserveSize>2000000000</HeapReserveSize>
+      <HeapCommitSize>400000</HeapCommitSize>
+      <StackReserveSize>200000000</StackReserveSize>
+      <StackCommitSize>40000</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OutputFile>$(OutDir)HexapodRobotSimulation$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\include\boost-1_82;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <DisableSpecificWarnings>4828;4514;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\lib;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalLibraryDirectories>
+      <HeapReserveSize>2000000000</HeapReserveSize>
+      <HeapCommitSize>400000</HeapCommitSize>
+      <StackReserveSize>200000000</StackReserveSize>
+      <StackCommitSize>40000</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OutputFile>$(OutDir)HexapodRobotSimulation$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\include\boost-1_82;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <DisableSpecificWarnings>4828;4514;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Boost\lib;$(SolutionDir)libraries\toml11-3.7.1;$(SolutionDir)libraries\magic_enum\include;$(SolutionDir)libraries\jsoncons\include;$(SolutionDir)libraries</AdditionalLibraryDirectories>
+      <HeapReserveSize>2000000000</HeapReserveSize>
+      <HeapCommitSize>400000</HeapCommitSize>
+      <StackReserveSize>200000000</StackReserveSize>
+      <StackCommitSize>40000</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OutputFile>$(OutDir)HexapodRobotSimulation$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

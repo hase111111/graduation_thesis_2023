@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Common">
+      <UniqueIdentifier>{abdfdf39-b790-4b8d-882b-014efbb3c240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Hexapod">
+      <UniqueIdentifier>{e6718033-9dd2-4cc9-94c3-f4dff54cca6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map">
+      <UniqueIdentifier>{834c5fe4-5734-49b7-a240-5af752a32aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node">
+      <UniqueIdentifier>{b124c590-c0f6-4d4f-a8e8-9277ec9952a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\NodeCreator">
+      <UniqueIdentifier>{33a12a61-307b-4f44-be6c-797f8141ec5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\LegState">
+      <UniqueIdentifier>{2500ddaa-0eac-4e3a-8940-26819bea1d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\NodeCreator\LegChanger">
+      <UniqueIdentifier>{028b5f8b-3a6e-48d1-a3c9-e610d6a9bcd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\NodeCreator\ComChanger">
+      <UniqueIdentifier>{527ad95b-d1c1-4ac8-b586-46847f5a2a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System">
+      <UniqueIdentifier>{1959d369-af6e-477e-b55b-c7a0ee3536c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common\CommandIO">
+      <UniqueIdentifier>{cf856c32-8544-4133-836a-6ee261d4b76b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\Simulation">
+      <UniqueIdentifier>{fb03873e-eff6-4c6a-90ae-3f0abbf04a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\GraphViewer">
+      <UniqueIdentifier>{0225d192-2f36-462a-a3d3-953fb91b46e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\ResultViewer">
+      <UniqueIdentifier>{d65f5b8b-b4b0-4225-9f6a-a31897756b1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common\Math">
+      <UniqueIdentifier>{2ecd7e50-7391-4ce6-9425-ac046f85323a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Hexapod\Const">
+      <UniqueIdentifier>{5d2a3518-4270-4b4b-8180-2b681ea74da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\CenterofMass">
+      <UniqueIdentifier>{9e53a133-1381-4a6b-a2d3-780dcb9a3771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\NodeCreator\NodeCreatorBuilder">
+      <UniqueIdentifier>{30b74562-fe8b-4e29-9c01-b027f9861224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator">
+      <UniqueIdentifier>{13719d39-0b92-44e4-8baa-fc8465850973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator\GraphSearcher">
+      <UniqueIdentifier>{b9e67fed-a42e-48be-924d-7cab4b56dce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator\GraphTreeCreator">
+      <UniqueIdentifier>{1e2610e7-46a4-473e-a99b-6b1a4b054099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator\Common">
+      <UniqueIdentifier>{0e295e39-e3da-4b35-88ea-2a5470ea7295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic">
+      <UniqueIdentifier>{2ba269c9-763e-445d-ab88-dd39cb76f2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Main">
+      <UniqueIdentifier>{cf849e47-1672-4375-881b-671d39bebf14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Common">
+      <UniqueIdentifier>{a651eeb8-05bc-4d75-8d27-a249cfbe51a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Common\Camera">
+      <UniqueIdentifier>{41ec5cfa-6960-4c66-b4a4-99ea386443cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Common\Input">
+      <UniqueIdentifier>{806e9277-ed43-427a-be39-f48c5524a3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Common\Resource">
+      <UniqueIdentifier>{b427decb-1887-44ee-a050-25b663a0db81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\3DRender">
+      <UniqueIdentifier>{f3d51702-5a31-4cf7-8353-879d6ef35141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\3DRender\HexapodRender">
+      <UniqueIdentifier>{eb158091-82ec-4928-a3c0-ecb913980896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\GUI">
+      <UniqueIdentifier>{df7998dd-914b-4696-8d2e-2c87e003cbb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphic\Interface">
+      <UniqueIdentifier>{686ea2ca-ca07-416f-b8da-79761b5b6465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Node\Test">
+      <UniqueIdentifier>{6abfc652-16b7-4965-813b-9bf99d8feb01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map\Test">
+      <UniqueIdentifier>{cfea5932-4b68-4d6a-8bfd-65f88c2a0fe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map\FileIo">
+      <UniqueIdentifier>{fb25e45b-efe3-41d2-a4eb-466f76c14f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map\MapCreator">
+      <UniqueIdentifier>{f4309f83-9585-47fc-8d63-df66452be9d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common\Test">
+      <UniqueIdentifier>{2b307fe3-198f-429d-ba96-648ccd6295ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\Simulation\Setting">
+      <UniqueIdentifier>{24e512b5-5bf6-4133-8f62-e4201200e5e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\Simulation\EndChecker">
+      <UniqueIdentifier>{f054ece9-6b6f-4d15-a4f1-10bc603ff2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\ApplicationSetting">
+      <UniqueIdentifier>{8d778b33-1437-4be0-9afb-2d2adb096af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\Simulation\RobotOperator">
+      <UniqueIdentifier>{ad665007-1db5-47af-89b6-f7b2864b7708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map\MapCreator\Parameter">
+      <UniqueIdentifier>{c791aefb-7715-470d-b459-535a83a92da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map\MapCreator\Parameter\Test">
+      <UniqueIdentifier>{a613336f-29f0-4470-9f7e-eb2fb6ba5730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common\TomlFileIO">
+      <UniqueIdentifier>{284aef02-d7ee-4c87-ae71-bdae3c76e934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common\Math\Test">
+      <UniqueIdentifier>{6a9d6337-45a3-4609-9662-59b0fea63a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator\Result">
+      <UniqueIdentifier>{550598ae-bda7-4076-9b98-3c7a72112d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GaitPatternGenerator\GraphSearcher\Test">
+      <UniqueIdentifier>{ebe7188b-6e74-4ceb-9859-eafbced09349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SerialCommunication">
+      <UniqueIdentifier>{c320f2ea-8590-44db-93d8-ce8c6b7a84e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\RobotControl">
+      <UniqueIdentifier>{06cb33da-eddd-4c1e-bda0-3c6604b38800}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="leg_state.h">
+      <Filter>ソース ファイル\Node\LegState</Filter>
+    </ClInclude>
+    <ClInclude Include="com_type.h">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClInclude>
+    <ClInclude Include="map_state.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_system.h">
+      <Filter>ソース ファイル\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_const.h">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="fps_controller.h">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="map_renderer.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="hexapod_const.h">
+      <Filter>ソース ファイル\Hexapod\Const</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_state_node.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="dead_lock_checker.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_main_display_model.h">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="math_vector2.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math_vector3.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math_polygon2.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math_line_segment2.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="com_candidate_polygon_maker.h">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClInclude>
+    <ClInclude Include="hexapod_next_move.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_main_graph_viewer.h">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="stopwatch.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_searcher_straight_move.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_leg_hierarchy.h">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_leg_up_down.h">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_com_up_down.h">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_com_move.h">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_generator_basic.h">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_search_const.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="math_euler.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math_quaternion.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_camera.h">
+      <Filter>ソース ファイル\Graphic\Common\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_dragger.h">
+      <Filter>ソース ファイル\Graphic\Common\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_camera.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_util.h">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard.h">
+      <Filter>ソース ファイル\Graphic\Common\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>ソース ファイル\Graphic\Common\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_button.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="world_grid_renderer.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="movement_locus_renderer.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_node_displayer.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdio_util.h">
+      <Filter>ソース ファイル\Common\CommandIO</Filter>
+    </ClInclude>
+    <ClInclude Include="output_detail.h">
+      <Filter>ソース ファイル\Common\CommandIO</Filter>
+    </ClInclude>
+    <ClInclude Include="application_setting_record.h">
+      <Filter>ソース ファイル\System\ApplicationSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="system_main_simulation.h">
+      <Filter>ソース ファイル\System\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="boot_mode.h">
+      <Filter>ソース ファイル\System</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_ground_point_renderer.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_display_node_switcher.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="stability_margin_renderer.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="phantomx_mk2.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="system_main_graph_viewer.h">
+      <Filter>ソース ファイル\System\GraphViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="system_main_result_viewer.h">
+      <Filter>ソース ファイル\System\ResultViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_main_basic.h">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="interpolated_node_creator.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="discrete_leg_pos.h">
+      <Filter>ソース ファイル\Node\LegState</Filter>
+    </ClInclude>
+    <ClInclude Include="discrete_com_pos.h">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_gait_pattern_generator.h">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_node_creator.h">
+      <Filter>ソース ファイル\Node\NodeCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="cassert_define.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="math_util.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_graphic_main.h">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_node_creator_builder.h">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_builder_straight_move.h">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_data_broker.h">
+      <Filter>ソース ファイル\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="asyncable_data.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="math_rotation_matrix.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="file_tree.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_system_main.h">
+      <Filter>ソース ファイル\System</Filter>
+    </ClInclude>
+    <ClInclude Include="result_file_exporter.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_result_record.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_search_result_record.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="result_file_importer.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="model_loader.h">
+      <Filter>ソース ファイル\Graphic\Common\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="boot_mode_selector.h">
+      <Filter>ソース ファイル\System</Filter>
+    </ClInclude>
+    <ClInclude Include="phantomx_renderer_simple.h">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClInclude>
+    <ClInclude Include="display_quality.h">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="phantomx_mk2_renderer_model.h">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClInclude>
+    <ClInclude Include="phantomx_mk2_const.h">
+      <Filter>ソース ファイル\Hexapod\Const</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_tree_creator.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphTreeCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_generator_revaluation.h">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="string_util.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="math_rot_converter.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="array_util.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="com_selector.h">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClInclude>
+    <ClInclude Include="divided_map_state.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="node_initializer.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_hexapod_joint_calculator.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_hexapod_coordinate_converter.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_hexapod_state_presenter.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_hexapod_posture_validator.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_body_rot.h">
+      <Filter>ソース ファイル\Node\NodeCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_builder_turn.h">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="font_loader.h">
+      <Filter>ソース ファイル\Graphic\Common\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_generator_thread.h">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="average_calculator.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_updater.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_searcher_spot_turn.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_graph_tree.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_builder_turn_spot.h">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_clickable.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_draggable.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_gui.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_wheel_handler.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_node_setter.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_dxlib_3d_renderer.h">
+      <Filter>ソース ファイル\Graphic\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_3d_renderer_group.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_node_setter_group.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="hexapod_renderer_builder.h">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_terminal.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_viewer_gui_controller.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_leg_up_down_2d.h">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_graph_tree_test.h">
+      <Filter>ソース ファイル\Node\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="test_main.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="gait_pattern_generator_switch_move.h">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="map_state_test.h">
+      <Filter>ソース ファイル\Map\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="map_file_importer.h">
+      <Filter>ソース ファイル\Map\FileIo</Filter>
+    </ClInclude>
+    <ClInclude Include="map_file_exporter.h">
+      <Filter>ソース ファイル\Map\FileIo</Filter>
+    </ClInclude>
+    <ClInclude Include="divided_map_state_test.h">
+      <Filter>ソース ファイル\Map\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="map_creator_by_csv.h">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_map_creator.h">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="map_creator_for_simulation.h">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="string_util_test.h">
+      <Filter>ソース ファイル\Common\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_setting_record.h">
+      <Filter>ソース ファイル\System\Simulation\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_camera_parameter_displayer.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="map_creator_factory.h">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_end_checker_by_goal_tape.h">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_simulation_end_checker.h">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_end_checker_factory.h">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClInclude>
+    <ClInclude Include="toml11_define.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_serialize_macro.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_end_checker_by_posture.h">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_end_checker_by_position.h">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClInclude>
+    <ClInclude Include="application_setting_record_validator.h">
+      <Filter>ソース ファイル\System\ApplicationSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_robot_operator.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_operator_for_gpg.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_file_importer.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_toml_data_validator.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_data_validator_always_true.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_file_exporter.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_directory_exporter.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_operator_fixed.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_operator_factory.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_operation.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_map_parameter.h">
+      <Filter>ソース ファイル\Map\MapCreator\Parameter</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_map_parameter_validator.h">
+      <Filter>ソース ファイル\Map\MapCreator\Parameter</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_map_parameter_validator_test.h">
+      <Filter>ソース ファイル\Map\MapCreator\Parameter\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>ソース ファイル\Graphic\Common\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_com_move_straight.h">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_operator_for_path.h">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="phantomx_mk2_parameter_record.h">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClInclude>
+    <ClInclude Include="math_vector3_test.h">
+      <Filter>ソース ファイル\Common\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math_const.h">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="implicit_metafunction_for_toml11.h">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="asyncable_data_test.h">
+      <Filter>ソース ファイル\Common\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math_util_test.h">
+      <Filter>ソース ファイル\Common\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math_vector2_test.h">
+      <Filter>ソース ファイル\Common\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math_rotation_matrix_test.h">
+      <Filter>ソース ファイル\Common\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math_line_segment2_test.h">
+      <Filter>ソース ファイル\Common\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_graph_searcher.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_search_evaluator.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_search_evaluator_test.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="graph_searcher_turn.h">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClInclude>
+    <ClInclude Include="serial_communication_thread.h">
+      <Filter>ソース ファイル\SerialCommunication</Filter>
+    </ClInclude>
+    <ClInclude Include="system_main_robot_control.h">
+      <Filter>ソース ファイル\System\RobotControl</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_gui_robot_control.h">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic_main_robot_control.h">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="approximated_motion_range_render.h">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="interpolate_validator.h">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_leg_up_down_radius.h">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="node_creator_builder_body_rot.h">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="leg_state.cpp">
+      <Filter>ソース ファイル\Node\LegState</Filter>
+    </ClCompile>
+    <ClCompile Include="com_type.cpp">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_system.cpp">
+      <Filter>ソース ファイル\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_const.cpp">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="fps_controller.cpp">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="map_renderer.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_state_node.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="dead_lock_checker.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_main_display_model.cpp">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="math_vector3.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="com_candidate_polygon_maker.cpp">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClCompile>
+    <ClCompile Include="math_line_segment2.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math_polygon2.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_main_graph_viewer.cpp">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_searcher_straight_move.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_leg_hierarchy.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_leg_up_down.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_com_up_down.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_com_move.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="gait_pattern_generator_basic.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="stopwatch.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="math_euler.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math_quaternion.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="camera_dragger.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_camera.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_camera.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_util.cpp">
+      <Filter>ソース ファイル\Graphic\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_button.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="world_grid_renderer.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="movement_locus_renderer.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_node_displayer.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="cmdio_util.cpp">
+      <Filter>ソース ファイル\Common\CommandIO</Filter>
+    </ClCompile>
+    <ClCompile Include="system_main_simulation.cpp">
+      <Filter>ソース ファイル\System\Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_ground_point_renderer.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_display_node_switcher.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="stability_margin_renderer.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="phantomx_mk2.cpp">
+      <Filter>ソース ファイル\Hexapod</Filter>
+    </ClCompile>
+    <ClCompile Include="system_main_graph_viewer.cpp">
+      <Filter>ソース ファイル\System\GraphViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="system_main_result_viewer.cpp">
+      <Filter>ソース ファイル\System\ResultViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_main_basic.cpp">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="interpolated_node_creator.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_search_const.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="math_vector2.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_builder_straight_move.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="math_rotation_matrix.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="file_tree.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="result_file_exporter.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_result_record.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_search_result_record.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="result_file_importer.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="model_loader.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="boot_mode_selector.cpp">
+      <Filter>ソース ファイル\System</Filter>
+    </ClCompile>
+    <ClCompile Include="phantomx_renderer_simple.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClCompile>
+    <ClCompile Include="phantomx_mk2_renderer_model.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_tree_creator.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphTreeCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="gait_pattern_generator_revaluation.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="string_util.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="math_rot_converter.cpp">
+      <Filter>ソース ファイル\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="com_selector.cpp">
+      <Filter>ソース ファイル\Node\CenterofMass</Filter>
+    </ClCompile>
+    <ClCompile Include="divided_map_state.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="node_initializer.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_body_rot.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_builder_turn.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="font_loader.cpp">
+      <Filter>ソース ファイル\Graphic\Common\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="gait_pattern_generator_thread.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_updater.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_searcher_spot_turn.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClCompile>
+    <ClCompile Include="gait_pattern_graph_tree.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_builder_turn_spot.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_3d_renderer_group.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_node_setter_group.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="hexapod_renderer_builder.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender\HexapodRender</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_terminal.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_viewer_gui_controller.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_leg_up_down_2d.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="gait_pattern_generator_switch_move.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="map_file_importer.cpp">
+      <Filter>ソース ファイル\Map\FileIo</Filter>
+    </ClCompile>
+    <ClCompile Include="map_file_exporter.cpp">
+      <Filter>ソース ファイル\Map\FileIo</Filter>
+    </ClCompile>
+    <ClCompile Include="map_creator_by_csv.cpp">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="map_creator_for_simulation.cpp">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_camera_parameter_displayer.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="map_creator_factory.cpp">
+      <Filter>ソース ファイル\Map\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_end_checker_by_goal_tape.cpp">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClCompile>
+    <ClCompile Include="toml_serialize_macro.cpp">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_end_checker_factory.cpp">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_end_checker_by_posture.cpp">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_end_checker_by_position.cpp">
+      <Filter>ソース ファイル\System\Simulation\EndChecker</Filter>
+    </ClCompile>
+    <ClCompile Include="application_setting_record_validator.cpp">
+      <Filter>ソース ファイル\System\ApplicationSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_operator_for_gpg.cpp">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="toml_directory_exporter.cpp">
+      <Filter>ソース ファイル\Common\TomlFileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_operator_fixed.cpp">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_operator_factory.cpp">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_map_parameter_validator.cpp">
+      <Filter>ソース ファイル\Map\MapCreator\Parameter</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_com_move_straight.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\ComChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_operator_for_path.cpp">
+      <Filter>ソース ファイル\System\Simulation\RobotOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_search_evaluator.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClCompile>
+    <ClCompile Include="graph_searcher_turn.cpp">
+      <Filter>ソース ファイル\GaitPatternGenerator\GraphSearcher</Filter>
+    </ClCompile>
+    <ClCompile Include="serial_communication_thread.cpp">
+      <Filter>ソース ファイル\SerialCommunication</Filter>
+    </ClCompile>
+    <ClCompile Include="system_main_robot_control.cpp">
+      <Filter>ソース ファイル\System\RobotControl</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_gui_robot_control.cpp">
+      <Filter>ソース ファイル\Graphic\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic_main_robot_control.cpp">
+      <Filter>ソース ファイル\Graphic\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="approximated_motion_range_render.cpp">
+      <Filter>ソース ファイル\Graphic\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="interpolate_validator.cpp">
+      <Filter>ソース ファイル\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_leg_up_down_radius.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\LegChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="node_creator_builder_body_rot.cpp">
+      <Filter>ソース ファイル\Node\NodeCreator\NodeCreatorBuilder</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
