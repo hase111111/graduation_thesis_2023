@@ -1,7 +1,8 @@
 ﻿
 //! @file      math_vector3_test.h
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory,
+//! Saitama University All right reserved.
 
 #ifndef DESIGNLAB_MATH_VECTOR3_TEST_H_
 #define DESIGNLAB_MATH_VECTOR3_TEST_H_
@@ -247,11 +248,11 @@ TEST_SUITE("Vector3")
     {
         const struct { Vector3 v; Vector3 expected; }
         table[] = {
-                    {Vector3(1, 0, 0), Vector3(1, 0, 0)},
-                    {Vector3(0, 1, 0), Vector3(0, 1, 0)},
-                    {Vector3(0, 0, 1), Vector3(0, 0, 1)},
-                    {Vector3(1, 1, 1), Vector3(0.577350f, 0.577350f, 0.577350f)},
-                    {Vector3(-1, -1, -1), Vector3(-0.577350f, -0.577350f, -0.577350f)},
+            {Vector3(1, 0, 0), Vector3(1, 0, 0)},
+            {Vector3(0, 1, 0), Vector3(0, 1, 0)},
+            {Vector3(0, 0, 1), Vector3(0, 0, 1)},
+            {Vector3(1, 1, 1), Vector3(0.577350f, 0.577350f, 0.577350f)},
+            {Vector3(-1, -1, -1), Vector3(-0.577350f, -0.577350f, -0.577350f)},
         };
 
         for (auto [v, expected] : table)
@@ -359,11 +360,11 @@ TEST_SUITE("Vector3")
     {
         const struct { Vector3 v; Vector3 expected; }
         table[] = {
-                    {Vector3(1, 0, 0), Vector3(1, 0, 0)},
-                    {Vector3(0, 1, 0), Vector3(0, 1, 0)},
-                    {Vector3(0, 0, 1), Vector3(0, 0, 1)},
-                    {Vector3(1, 1, 1), Vector3(0.577350f, 0.577350f, 0.577350f)},
-                    {Vector3(-1, -1, -1), Vector3(-0.577350f, -0.577350f, -0.577350f)},
+            {Vector3(1, 0, 0), Vector3(1, 0, 0)},
+            {Vector3(0, 1, 0), Vector3(0, 1, 0)},
+            {Vector3(0, 0, 1), Vector3(0, 0, 1)},
+            {Vector3(1, 1, 1), Vector3(0.577350f, 0.577350f, 0.577350f)},
+            {Vector3(-1, -1, -1), Vector3(-0.577350f, -0.577350f, -0.577350f)},
         };
 
         for (auto [v, expected] : table)

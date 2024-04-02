@@ -1,7 +1,8 @@
 ﻿
 //! @file      toml_file_exporter.h
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory,
+//!  Saitama University All right reserved.
 
 #ifndef DESIGNLAB_TOML_FILE_EXPORTER_H_
 #define DESIGNLAB_TOML_FILE_EXPORTER_H_
@@ -24,7 +25,8 @@ namespace designlab
 //! @class TomlFileExporter
 //! @brief TOMLファイルを出力するテンプレートクラス．
 //! @tparam T 出力するデータの型．
-//! 条件として，デフォルトコンストラクタを持つことと，toml::into<T>()が定義されていることが必要．
+//! 条件として，デフォルトコンストラクタを持つことと，
+//! toml::into<T>()が定義されていることが必要．
 template <typename T, typename = std::enable_if_t<
     std::is_default_constructible_v<T>&& impl::has_into_toml<T>::value> >
 class TomlFileExporter final
@@ -48,7 +50,7 @@ public:
         // ファイルが開けなかったら何もしない．
         if (!ofs)
         {
-            CmdIOUtil::Output("TOMLファイルの出力に失敗しました．file_path : " + file_path,
+            CmdIOUtil::Output("Failed to output TOML file. File_path : " + file_path,
                               enums::OutputDetail::kSystem);
             return;
         }
@@ -57,7 +59,7 @@ public:
 
         ofs.close();  // ファイルを閉じる．
 
-        CmdIOUtil::Output("TOMLファイルを出力しました．file_path : " + file_path,
+        CmdIOUtil::Output("TOML files are output. File_path : " + file_path,
                           enums::OutputDetail::kSystem);
     }
 
@@ -77,7 +79,10 @@ private:
 
         for (const auto& s : split_str)
         {
-            if (s.size() != 0 && s[0] == '#' && past_first_char != '#' && past_first_char != ' ')
+            if (s.size() != 0 &&
+                s[0] == '#' &&
+                past_first_char != '#' &&
+                past_first_char != ' ')
             {
                 res_str += "\n";
             }

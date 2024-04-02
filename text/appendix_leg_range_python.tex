@@ -10,13 +10,14 @@ PhantomXの可動域を正確に把握する必要がある．
 そこで，PhantomXの脚の可動域を可視化するプログラムを作成した．
 プログラムは簡単のためPythonを用いて作成しており，
 GitHubを通じてだれでも利用できるようにしている．
+また，設計工学研究室のメンバーが利用できるように，
+「設計研論文/2023/学士/長谷川大晴/05プログラム」の中にプロジェクトを配置している．
 以下にプログラムの導入方法を説明し，
 プログラムの仕様について述べる．
 
 \section{導入方法}
 プログラムはGitHubを通じて公開しているため，
 まずはGitHubからプログラムをダウンロードする方法を説明する．
-そしてPythonのプログラムをコンパイルする方法を説明する．
 
 \subsection{Gitの使用方法}
 Gitとは，ソースコードなどの変更履歴を記録・追跡するための分散型バージョン管理システムである．
@@ -42,7 +43,7 @@ Gitのインストールが成功したかどうかは，コマンドを用い�
 インストールが完了した場合，Gitのコマンドが使用できるようになっているはずである．
 1度パソコンを再起動したのち，\figref{fig:app_b_git_bash}のように
 スタートメニューに「Git Bash」と入力してGit Bashを起動する．
-Git Bashが起動したら，\coderef{lst:app_b_git_version}のコマンドを入力する．
+Git Bashが起動したら，\coderef{lst:git_version}のコマンドを入力する．
 \figref{fig:app_b_git_version}のようにGitのバージョンが表示されれば，インストールは成功している．
 \\
 \begin{lstlisting}[caption=Gitのバージョン確認コマンド, label=lst:git_version]
@@ -95,18 +96,55 @@ GitHubからプログラムのダウンロードを行うための手順を説�
   \item 脚の可動範囲を表示するプログラム \url{https://github.com/hase111111/phantomx_leg_display/tree/main} （アクセス日 2024/02/17）
 \end{itemize}
 
-\subsection{pythonのコンパイル方法}
-本項目では，Windows 10におけるpythonのコンパイル方法を説明する．
-当方の開発環境はWindows 10であるため，Windows 10におけるpythonのコンパイル方法についてのみ説明するものとし，
-Mac OSやLinuxにおけるpythonのコンパイル方法については，ここでは説明しない．
-（しかし，「python Mac 環境構築」，「python Linux 環境構築」などで検索すると最適な方法が見つかるだろう．
-とくにLinuxにおいては環境構築は非常に簡単である．）
+フォークはGitHub上で行う操作であるため，ブラウザを用いて行う．
+上記のURLにアクセスし，画面右上の「Fork」ボタンを押すことでフォークが完了する．
+設定を変更する必要はないため，そのまま「Create Fork」を選択する．
 
-Windows 10におけるpythonの使用方法として，pipを用いた環境を使用する方法があるが，
-ここではAnacondaを用いた環境を使用する方法を説明する．
-Anacondaはpythonのパッケージ管理システムであり，pythonの環境構築を簡単に行うことができる．
-注意点としてcondaとpipは別のパッケージ管理システムであるため，
-Anacondaを使用する場合はpipコマンドを使用してはならない．
+次に，フォークしたレポジトリを自分のパソコンにクローンする．
+Git Bashを起動し，\coderef{lst:git_clone}のコマンドを入力する．
+
+\begin{lstlisting}[caption=Gitのクローンコマンド, label=lst:git_clone]
+  git clone フォークしたレポジトリのURL
+\end{lstlisting}
+
+
+\coderef{lst:git_clone}のコマンドを入力することで，フォークしたレポジトリが自分のパソコンにダウンロードされる．
+ダウンロードが完了すると，フォルダが作成されているはずである．
+
+% \subsection{pythonのコンパイル方法}
+% 本項目では，Windows 10におけるpythonのコンパイル方法を説明する．
+% 当方の開発環境はWindows 10であるため，Windows 10におけるpythonのコンパイル方法についてのみ説明するものとし，
+% Mac OSやLinuxにおけるpythonのコンパイル方法については，ここでは説明しない．
+% （しかし，「python Mac 環境構築」，「python Linux 環境構築」などで検索すると最適な方法が見つかるだろう．
+% とくにLinuxにおいては環境構築は非常に簡単である．）
+
+% Windows 10におけるpythonの使用方法として，pipを用いた環境を使用する方法があるが，
+% ここではAnacondaを用いた環境を使用する方法を説明する．
+% Anacondaはpythonのパッケージ管理システムであり，pythonの環境構築を簡単に行うことができる．
+% 注意点としてcondaとpipは別のパッケージ管理システムであるため，
+% Anacondaを使用する場合はpipコマンドを使用してはならない．
 
 \section{プログラムの仕様}
 
+\subsection{プログラムの概要}
+プログラムはPythonを用いて作成しており，PhantomXの脚の可動域を表示する．
+プログラムはいくつかのファイルから構成されており，それぞれのファイルの概要を以下に示す．
+また，プログラムのソースコードを以下に示す．
+
+% 画像を挿入する
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=90mm, clip]{figure/appendix/python.png}
+    \caption{Python Code}
+    \label{fig:ch1_nedo_spot} % chktex 24
+  \end{center}
+\end{figure}
+
+\lstinputlisting[caption=approximated\_graph\_renderer.py, label=approximated_graph_renderer.py,style=Python]{source/python/approximated_graph_renderer.py}
+\lstinputlisting[caption=hexapod.py, label=hexapod.py,style=Python]{source/python/hexapod.py}
+\lstinputlisting[caption=hexapod\_leg\_power.py, label=hexapod_leg_power.py,style=Python]{source/python/hexapod_leg_power.py}
+\lstinputlisting[caption=hexapod\_leg\_renderer.py, label=hexapod_leg_renderer.py,style=Python]{source/python/hexapod_leg_renderer.py}
+\lstinputlisting[caption=hexapod\_main.py, label=hexapod_main.py,style=Python]{source/python/hexapod_main.py}
+\lstinputlisting[caption=hexapod\_range\_of\_motion.py, label=hexapod_range_of_motion.py,style=Python]{source/python/hexapod_range_of_motion.py}
+\lstinputlisting[caption=mouse\_grid\_renderer.py, label=mouse_grid_renderer.py,style=Python]{source/python/mouse_grid_renderer.py}
+\lstinputlisting[caption=triangle\_checker.py, label=triangle_checker.py,style=Python]{source/python/triangle_checker.py}

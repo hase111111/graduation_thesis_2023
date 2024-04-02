@@ -1,6 +1,7 @@
 ﻿
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory,
+//! Saitama University All right reserved.
 
 #include <memory>
 
@@ -42,7 +43,7 @@
 #include "phantomx_mk2.h"
 
 
-
+#include "latex_output.h"
 // このプロジェクトがコンパイルされない場合はソリューションエクスプローラーから
 // DesignLabを右クリック →「スタートアッププロジェクトに設定」を選択．
 
@@ -54,17 +55,23 @@ int main()
     using namespace designlab;
     using enum enums::OutputDetail;
 
+    LatexOutput latex_output;
+    latex_output.Output();
+
     // まずは，設定ファイルを読み込む
     CmdIOUtil::SetOutputLimit(kSystem);
 
     TomlDirectoryExporter toml_directory_exporter;
     toml_directory_exporter.Export();
 
-    TomlFileImporter<ApplicationSettingRecord> application_setting_importer(std::make_unique<ApplicationSettingRecordValidator>());
+    TomlFileImporter<ApplicationSettingRecord> application_setting_importer(
+        std::make_unique<ApplicationSettingRecordValidator>());
 
 
     // 読み込んだ設定ファイルをクラスに記録する．
-    const auto application_setting_record = std::make_shared<const ApplicationSettingRecord>(application_setting_importer.ImportOrUseDefault("./settings.toml"));
+    const auto application_setting_record =
+        std::make_shared<const ApplicationSettingRecord>(
+            application_setting_importer.ImportOrUseDefault("./settings.toml"));
 
 
     // 次に，コマンドラインの出力を設定する．
@@ -72,10 +79,12 @@ int main()
     CmdIOUtil::SetOutputLimit(application_setting_record->cmd_output_detail);
 
     // タイトルを表示する．
-    CmdIOUtil::OutputTitle("グラフ探索による6脚歩行ロボットの自由歩容計画", true);
+    CmdIOUtil::OutputTitle("Free Gait Planning for a "
+                           "Hexapod Walking Robot by Graph Search", true);
 
 
-    // GUIを別のスレッドで実行する．このスレッドへはGraphicDataBrokerを通してデータを渡す．
+    // GUIを別のスレッドで実行する．
+    // このスレッドへはGraphicDataBrokerを通してデータを渡す．
     GraphicSystem graphic_system(application_setting_record);
 
     // グラフィックシステムを別スレッドで実行する．
@@ -498,7 +507,7 @@ int main()
 //! C++には constexprという機能があり，これを使うとコンパイル時に定数を計算してくれるため，
 //! 実行時の負荷が減る．
 //! 使用可能であるならばこれを使うべき．
-//! @see PhantomXMkIIConst
+//! @see designlab::PhantomXMkIIConst
 //!
 //! @anchor anchor_array
 //! @section ●配列について
@@ -554,7 +563,7 @@ int main()
 //!
 //! @anchor anchor_header
 //! @section ●ヘッダーについて
-//! 必ず，インクルードガードを書きましょう．@#ifndef ～ @#endifのこと．
+//! 必ず，インクルードガードを書くこと．@#ifndef ～ @#endifのこと．
 //! @#pragma once と書くと，インクルードガードを書かなくてもインクルードガードの機能が働く．
 //! しかし，これはC++の機能ではないので非推奨．(実際にはほとんどのコンパイラで使えるが，
 //! 一部のコンパイラでは使えない．特にこだわりがないならばどちらを使ってもよい．)

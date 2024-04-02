@@ -1,7 +1,8 @@
 ﻿
 //! @file      math_euler.h
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory,
+//! Saitama University All right reserved.
 
 #ifndef DESIGNLAB_MATH_EULER_H_
 #define DESIGNLAB_MATH_EULER_H_
@@ -15,7 +16,7 @@
 namespace designlab
 {
 
-//! @struct designlab::EulerXYZ
+//! @struct EulerXYZ
 //! @brief XYZオイラー角を用いた回転を表す構造体．
 //! @details
 //! XYZオイラー角によって回転を表現する．単位は [rad]．
@@ -114,7 +115,8 @@ struct EulerXYZ final
 
 //! @brief 出力ストリーム．Csv形式で出力する．カンマ区切り．単位は [rad]．
 template <class Char>
-inline std::basic_ostream<Char>& operator <<(std::basic_ostream<Char>& os, const EulerXYZ& r)
+inline std::basic_ostream<Char>& operator <<(
+    std::basic_ostream<Char>& os, const EulerXYZ& r)
 {
     os << math_util::FloatingPointNumToString(r.x_angle) << Char(',') <<
         math_util::FloatingPointNumToString(r.y_angle) << Char(',') <<
@@ -125,10 +127,12 @@ inline std::basic_ostream<Char>& operator <<(std::basic_ostream<Char>& os, const
 
 //! @brief 入力ストリーム
 template <class Char>
-inline std::basic_istream<Char>& operator >>(std::basic_istream<Char>& is, EulerXYZ& r)
+inline std::basic_istream<Char>& operator >>(
+    std::basic_istream<Char>& is, EulerXYZ& r)
 {
-    Char unused;
-    return is >> unused >> r.x_angle >> unused >> r.y_angle >> unused >> r.z_angle >> unused;
+    Char unused = 0;
+    return is >> unused >>
+        r.x_angle >> unused >> r.y_angle >> unused >> r.z_angle >> unused;
 }
 
 

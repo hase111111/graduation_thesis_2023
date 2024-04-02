@@ -33,6 +33,47 @@
 \usepackage{pgf-umlcd}
 
 % プログラム挿入の設定
+\lstdefinestyle{Python}{
+	% プログラム言語(複数の言語に対応，C,C++も可)
+ 	language = Python,
+ 	% 背景色と透過度
+ 	backgroundcolor={\color[gray]{.90}},
+ 	% 枠外に行った時の自動改行
+ 	breaklines = true,
+ 	% 自動開業後のインデント量(デフォルトでは20[pt])	
+ 	breakindent = 10pt,
+ 	% 標準の書体
+ 	basicstyle = \ttfamily\scriptsize,
+ 	%basicstyle = {\small}
+ 	% コメントの書体
+ 	commentstyle = {\bfseries \color[cmyk]{1,0.4,1,0}},
+ 	% 関数名等の色の設定
+ 	classoffset = 0,
+ 	% キーワード(int, ifなど)の書体
+ 	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},
+ 	% ""で囲まれたなどの"文字"の書体
+ 	stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+ 	% 枠 "t"は上に線を記載, "T"は上に二重線を記載
+	% 他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	frame = TBrl,
+ 	% frameまでの間隔(行番号とプログラムの間)
+ 	framesep = 5pt,
+ 	%行番号の位置
+ 	numbers = left,
+	%行番号の間隔
+ 	stepnumber = 1,
+	%右マージン
+ 	%xrightmargin=0zw,
+ 	%左マージン
+	%xleftmargin=3zw,
+	%行番号の書体
+ 	numberstyle = \tiny,
+	%タブの大きさ
+ 	tabsize = 4,
+ 	%キャプションの場所("tb"ならば上下両方に記載)
+ 	captionpos = t
+}
+
 \lstset{
 	% プログラム言語(複数の言語に対応，C,C++も可)
  	language = C++,
@@ -131,12 +172,12 @@
     % !!重要!!
     % 各章は奇数ページから開始するように調整すること
     % つまり各章は偶数ページで終わるように、改ページ等を使用して調整する。
-  	%\input{text/chapter1.tex} % 第1章
-    %\input{text/chapter2.tex} % 第2章
-    %\input{text/chapter3.tex} % 第3章
-    %\input{text/chapter4.tex} % 第4章
-    %\input{text/chapter5.tex} % 第5章
-		%\input{text/chapter6.tex} % 第6章
+  	\input{text/chapter1.tex} % 第1章
+    \input{text/chapter2.tex} % 第2章
+    \input{text/chapter3.tex} % 第3章
+    \input{text/chapter4.tex} % 第4章
+    \input{text/chapter5.tex} % 第5章
+		\input{text/chapter6.tex} % 第6章
     \input{text/appendix.tex}   % 付録
     \backmatter{}               % 章番号を付けない
     \input{text/thanks.tex}     % 謝辞

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="abstract_dxlib_gui.h" />
     <ClInclude Include="application_setting_record_validator.h" />
     <ClInclude Include="approximated_motion_range_render.h" />
     <ClInclude Include="asyncable_data_test.h" />
@@ -29,10 +30,12 @@
     <ClInclude Include="graph_search_evaluator_test.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
     <ClInclude Include="interpolate_validator.h" />
+    <ClInclude Include="latex_output.h" />
     <ClInclude Include="math_line_segment2_test.h" />
     <ClInclude Include="math_rotation_matrix_test.h" />
     <ClInclude Include="math_vector2_test.h" />
     <ClInclude Include="node_creator_builder_body_rot.h" />
+    <ClInclude Include="node_creator_leg_hierarchy_test.h" />
     <ClInclude Include="node_creator_leg_up_down_radius.h" />
     <ClInclude Include="serial_communication_thread.h" />
     <ClInclude Include="string_util_test.h" />
@@ -188,6 +191,7 @@
     <ClInclude Include="world_grid_renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="abstract_dxlib_gui.cpp" />
     <ClCompile Include="application_setting_record_validator.cpp" />
     <ClCompile Include="approximated_motion_range_render.cpp" />
     <ClCompile Include="dxlib_3d_renderer_group.cpp" />
@@ -205,6 +209,7 @@
     <ClCompile Include="graph_search_evaluator.cpp" />
     <ClCompile Include="hexapod_renderer_builder.cpp" />
     <ClCompile Include="interpolate_validator.cpp" />
+    <ClCompile Include="latex_output.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map_creator_by_csv.cpp" />
     <ClCompile Include="map_creator_factory.cpp" />

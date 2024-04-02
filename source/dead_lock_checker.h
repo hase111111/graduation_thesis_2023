@@ -1,7 +1,7 @@
 ﻿
 //! @file      dead_lock_checker.h
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory, Saitama University All right reserved.
 
 #ifndef DESIGNLAB_DEAD_LOCK_CHECKER_H_
 #define DESIGNLAB_DEAD_LOCK_CHECKER_H_
@@ -20,7 +20,7 @@ namespace designlab
 //! グラフ探索を用いてロボットの歩容生成をしていると，
 //! 最善の行動をとると，同様の操作をし続けて動作がループしてしまう場合がある．
 //! それを探知して，歩容生成に失敗していることを通達するクラス．
-//! @subsubsection [deque(デック)について]
+//! @b [deque(デック)について]
 //! std::vectorの亜種．
 //! vectorとの違いとして，先頭と末尾の要素の追加・削除が高速である．
 //! @n 参考 : https://cpprefjp.github.io/reference/deque/deque.html (アクセス日 2023/12/27)

@@ -127,3 +127,95 @@ constexpr関数内ではその性質上，実装にいくつかの制限があ�
 これによって，標準ライブラリの多くの関数やクラスのメンバ関数がconstexpr関数に変更されている．
 よく使用するものでは，std::vectorのコンストラクタやstd::stringのメンバ関数などがconstexpr関数に変更されている．
 
+\section{Concept}
+C++20では，concept（コンセプト）という新しい機能が導入された．
+conceptは，テンプレートの型に対する制約を定義するための機能である．
+C++17以前のテンプレートでは，型に対する制約を記述するために，SFINAE（Substitution Failure Is Not An Error）を使用していた．
+SFINAEで型の制約を記述する場合，プログラムの内容に対して記述が煩雑になりがちである．
+また，SFINAEはコンパイルエラーが発生した場合に，エラーメッセージがわかりにくい．
+conceptを使用することで，SFINAEを使用することなく，型に対する制約を記述することができる．
+以下に例を示す．
+
+\begin{lstlisting}[caption=SFINAE,label=sfinae]
+#include <iostream>
+#include <type_traits>
+
+template <typename T, 
+typename = typename std::enable_if<std::is_integral<T>::value>::type>
+func(T t)
+{
+  std::cout << t << std::endl;
+}
+
+int main()
+{
+  func(10);
+  // func(10.0);  // コンパイルエラー
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=concept,label=concept]
+#include <iostream>
+#include <concepts>
+
+template <typename T>
+concept Integral = std::is_integral<T>::value;
+
+template <Integral T>
+void func(T t)
+{
+  std::cout << t << std::endl;
+}
+
+int main()
+{
+  func(10);
+  // func(10.0);  // コンパイルエラー
+}
+
+\end{lstlisting}
+
+\section{std::numbers，std::format}
+C++20では，std::numbers，std::formatという新しい機能が導入された．
+std::numbersはいくつかの定数を提供するための機能である．
+たとえば，std::numbers::piは円周率を表す定数である．
+同様な機能としてC言語にはM\_PIがあるが，C言語のM\_PIはマクロであるため，型を持たない．
+そのため，M\_PIを使用する際には，型の不一致や意図しないキャストの発生を引き起こす可能性がある．
+std::numbersはテンプレートを使用しているため，型を持つことができる．
+任意の型を持つ定数は次のように使用することができる．
+
+\begin{lstlisting}[caption=std::numbers,label=std_number]
+#include <iostream>
+#include <numbers>
+
+int main()
+{
+  // std::numbers::pi_vは円周率を表す定数である．  
+  std::cout << std::numbers::pi_v<float> << std::endl;  // float型
+  std::cout << std::numbers::pi_v<double> << std::endl;  // double型
+}
+
+\end{lstlisting}
+
+% 1行開ける
+\vskip \baselineskip  % chktex 1
+
+std::formatは，文字列をフォーマットするための機能である．
+C言語では，printf関数を使用して文字列をフォーマットすることができるが，
+printf関数はパラメーターの受け渡しをスタックで行う為，
+printf内の置換指定子と不整合のあるパラメーターを指定するとプログラムの実行時にエラーが発生する．
+std::formatはprintfとほぼ同じような機能を提供するが，パラメータが合わない場合は例外を投げる．
+以下に例を示す．
+
+\begin{lstlisting}[caption=std::format,label=std_format]
+#include <iostream>
+#include <format>
+
+int main()
+{
+  // std::formatは文字列をフォーマットするための機能である．
+  std::string str = std::format("Hello, {}!", "world");
+  std::cout << str << std::endl;
+}
+
+\end{lstlisting}

@@ -1,6 +1,6 @@
 ﻿
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory, Saitama University All right reserved.
 
 #include "graphic_system.h"
 
@@ -156,9 +156,6 @@ bool GraphicSystem::Loop()
 
     // GUI画面への標準出力をリセットする．
     clsDx();
-
-    // キー入力を更新する．
-    Keyboard::GetIns()->Update();
 
     // 処理を行う．graphic_main_ptr_が false ならば( nullであるならば)，処理を行わない．
     if (graphic_main_ptr_ != nullptr)

@@ -1,7 +1,8 @@
 ﻿
 //! @file      dxlib_gui_terminal.h
 //! @author    Hasegawa
-//! @copyright © 埼玉大学 設計工学研究室 2023. All right reserved.
+//! @copyright (C) 2023 Design Engineering Laboratory,
+//!  Saitama University All right reserved.
 
 #ifndef DESIGNLAB_DXLIB_GUI_TERMINAL_H_
 #define DESIGNLAB_DXLIB_GUI_TERMINAL_H_
@@ -31,8 +32,7 @@ public:
     void SetVisible(bool visible);
     bool IsVisible() const;
 
-    void ClickedAction(int cursor_x, int cursor_y, int left_pushing_count,
-                       int middle_pushing_count, int right_pushing_count);
+    void ClickedAction(const DxlibMouseState& state);
 
     bool CursorOnGui(int cursor_x, int cursor_y) const noexcept;
 
